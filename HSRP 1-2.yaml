@@ -1,0 +1,704 @@
+lab:
+  description: ''
+  notes: ''
+  title: Lab at Tue 23:29 PM
+  version: 0.1.0
+links:
+  - id: l0
+    n1: n1
+    n2: n0
+    i1: i0
+    i2: i1
+    label: desktop-0-eth0<->iosvl2-0-GigabitEthernet0/0
+  - id: l1
+    n1: n4
+    n2: n0
+    i1: i1
+    i2: i2
+    label: iosvl2-2-GigabitEthernet0/0<->iosvl2-0-GigabitEthernet0/1
+  - id: l2
+    n1: n3
+    n2: n0
+    i1: i1
+    i2: i3
+    label: iosvl2-1-GigabitEthernet0/0<->iosvl2-0-GigabitEthernet0/2
+  - id: l3
+    n1: n3
+    n2: n2
+    i1: i2
+    i2: i1
+    label: iosvl2-1-GigabitEthernet0/1<->csr1000v-0-GigabitEthernet1
+  - id: l4
+    n1: n4
+    n2: n2
+    i1: i2
+    i2: i2
+    label: iosvl2-2-GigabitEthernet0/1<->csr1000v-0-GigabitEthernet2
+  - id: l5
+    n1: n3
+    n2: n4
+    i1: i3
+    i2: i3
+    label: iosvl2-1-GigabitEthernet0/2<->iosvl2-2-GigabitEthernet0/2
+nodes:
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 2939 bytes
+      !
+      ! Last configuration change at 23:31:52 UTC Wed Jan 25 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SW1
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      no ip domain-lookup
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       switchport access vlan 10
+       negotiation auto
+       spanning-tree portfast edge
+      !
+      interface GigabitEthernet0/1
+       switchport access vlan 10
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport access vlan 10
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
+      interface GigabitEthernet1/0
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       negotiation auto
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^CC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^CC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^CC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n0
+    label: iosvl2-0
+    node_definition: iosvl2
+    ram: 2000
+    tags: []
+    x: 944
+    y: 195
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet1/0
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet1/1
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet1/2
+        slot: 6
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n1
+    label: desktop-0
+    node_definition: desktop
+    ram: 512
+    tags: []
+    x: 942
+    y: 378
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 0
+    configuration: "Building configuration...\n\nCurrent configuration : 6615 bytes\n\
+      !\n! Last configuration change at 23:31:40 UTC Wed Jan 25 2023\n!\nversion 17.3\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname ISPR1\n!\nboot-start-marker\n\
+      boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
+      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
+      !\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n\
+      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n\
+      \ enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-2193731401\n\
+      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-2193731401\n\
+      \ revocation-check none\n rsakeypair TP-self-signed-2193731401\n!\n!\ncrypto\
+      \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
+      \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
+      \ 040A1305 43697363 6F312030 1E060355 04031317 43697363\n  6F204C69 63656E73\
+      \ 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n  3834375A 170D3338\
+      \ 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n  43697363 6F312030\
+      \ 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n  526F6F74 20434130\
+      \ 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n  82010A02 82010100\
+      \ A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n  CBB4C798 212AA147\
+      \ C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n  1C394D78 462EF239\
+      \ C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9\
+      \ 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n  7390A3EB 2B5436AD\
+      \ C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n  68E69491 20F320E7\
+      \ 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n  C7479096 B4CB2D62\
+      \ EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD\
+      \ 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1\
+      \ 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n  06300F06 03551D13\
+      \ 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n  4B3D31E5 1B3E6A17\
+      \ 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n  03820101 00507F24\
+      \ D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n  604EDCDE FF4FED2B\
+      \ 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E\
+      \ 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n  467A3DF4 4D565700\
+      \ 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6\
+      \ 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n  5FB0DA06 B92AFE7F\
+      \ 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n  80DDCD16 D6BACECA\
+      \ EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n  418616A9 4093E049\
+      \ 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n  D697DF7F 28\n  \t\
+      quit\ncrypto pki certificate chain TP-self-signed-2193731401\n certificate self-signed\
+      \ 01\n  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n\
+      \  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n\
+      \  69666963 6174652D 32313933 37333134 3031301E 170D3233 30313235 32333039\n\
+      \  30305A17 0D333330 31323432 33303930 305A3031 312F302D 06035504 03132649\n\
+      \  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 31393337\n\
+      \  33313430 31308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n\
+      \  0A028201 0100D1C4 CD95766B D7C10FDF 691FBA63 5D4A49D2 E6108323 1CEB5EBC\n\
+      \  FDB04474 AB7EC5F6 048FC8C8 F5EA5549 9D29CE1D 193D48E4 3192D64F 78359F9F\n\
+      \  13A2F348 D0A42384 6852EB06 E8E67876 EC2498C5 DF69DF46 CE3162DA D14C4FB3\n\
+      \  677BD8EA 9AD4ED33 D39F7BFE 9B77E305 E00E4B2E AE01975E 5AB7BD93 7C240BCF\n\
+      \  A3FE31A7 0DCE02B2 1A5191C5 9A8088B0 FF499683 34F5A36B 5B671991 F0DA521F\n\
+      \  D1FF80DC 8B68F2E8 B942DFC7 2150FF5A A4EE7639 F2623CD6 3CE6FDEB F3BFFFC6\n\
+      \  62268E85 63846631 F0C92905 0332A731 287D5426 F3583308 22D2C1E6 798399FE\n\
+      \  256C5204 67037AA8 DD4B004C 6196B16E B98BAFF9 1C5478DE 3EA10580 B6DE68F1\n\
+      \  21459A90 51210203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n\
+      \  301F0603 551D2304 18301680 1443A915 643F38B1 C5AB0A9E DC8068FE C0E7550F\n\
+      \  7E301D06 03551D0E 04160414 43A91564 3F38B1C5 AB0A9EDC 8068FEC0 E7550F7E\n\
+      \  300D0609 2A864886 F70D0101 05050003 82010100 6A38652E 8B88D2B0 7F165EF5\n\
+      \  A47889B6 60C4CA85 1D9439BC 46A0B12C A387C345 9AEBC717 020F1B86 4A7E214F\n\
+      \  BB29FBC5 9173BAFA C89A57B9 73A5E670 745973B1 8ACFC5E4 E050A4EC 309C0F54\n\
+      \  17A044CC 2A4404AF 8F1BAEC8 B4A7EC04 10909775 631469A4 41C2326B C95BE832\n\
+      \  C85A4836 79BEE850 D3F5BECE 7116A12E C8D87FB9 4ECC4C39 8EF041E4 122D5196\n\
+      \  3C5E1B59 B8B2202D 7874DA85 782C0CE0 6448CBCE 27A97362 85152CB5 FA1E79E7\n\
+      \  0836E93F 65D932FC 21DACD81 E2024048 28B1CCDF 20BAAB15 38E0F5D4 1F7DC55A\n\
+      \  F4232E06 F4ABD9EC 9157938D 534BFF25 D0D4245E 371F3E72 A2B4EC38 7A94C0C7\n\
+      \  FCEE088D 66C103A3 215CCF7F ED3C1A05 F515152E\n  \tquit\n!\nlicense udi pid\
+      \ CSR1000V sn 9SCVO9JJEBO\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
+      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
+      interface Loopback0\n ip address 69.69.69.69 255.255.255.255\n!\ninterface GigabitEthernet1\n\
+      \ ip address 5.0.0.2 255.255.255.252\n negotiation auto\n no mop enabled\n no\
+      \ mop sysid\n!\ninterface GigabitEthernet2\n ip address 5.0.1.2 255.255.255.252\n\
+      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
+      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no mop enabled\n no mop sysid\n!\nrouter bgp 65000\n bgp router-id 69.69.69.69\n\
+      \ bgp log-neighbor-changes\n network 5.0.0.0 mask 255.255.255.252\n network\
+      \ 5.0.1.0 mask 255.255.255.252\n neighbor 1.1.1.1 remote-as 65001\n neighbor\
+      \ 1.1.1.1 ebgp-multihop 2\n neighbor 1.1.1.1 update-source Loopback0\n neighbor\
+      \ 2.2.2.2 remote-as 65001\n neighbor 2.2.2.2 ebgp-multihop 2\n neighbor 2.2.2.2\
+      \ update-source Loopback0\n!\nip forward-protocol nd\nno ip http server\nip\
+      \ http secure-server\n!\nip route 1.1.1.1 255.255.255.255 5.0.0.1\nip route\
+      \ 2.2.2.2 255.255.255.255 5.0.1.1\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n\
+      !\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\n\
+      line vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n transport\
+      \ input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If\
+      \ contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ ! the email address configured in Cisco Smart License Portal will be used\
+      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
+      !\n!\n!\n!\nend"
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n2
+    label: csr1000v-0
+    node_definition: csr1000v
+    ram: 3072
+    tags: []
+    x: 957
+    y: -248
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet2
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet3
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet4
+        slot: 3
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3212 bytes
+      !
+      ! Last configuration change at 01:58:45 UTC Thu Jan 26 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname R1
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      no ip domain-lookup
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 1.1.1.1 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       switchport access vlan 10
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       no switchport
+       ip address 5.0.0.1 255.255.255.252
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport access vlan 10
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
+      interface Vlan10
+       ip address 192.168.1.1 255.255.255.0
+      !
+      router bgp 65001
+       bgp log-neighbor-changes
+       neighbor 69.69.69.69 remote-as 65000
+       neighbor 69.69.69.69 ebgp-multihop 2
+       neighbor 69.69.69.69 update-source Loopback0
+       !
+       address-family ipv4
+        network 192.168.1.0
+        neighbor 69.69.69.69 activate
+       exit-address-family
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip route 69.69.69.69 255.255.255.255 5.0.0.2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^CC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^CC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^CC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n3
+    label: iosvl2-1
+    node_definition: iosvl2
+    ram: 2000
+    tags: []
+    x: 670
+    y: -20
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3283 bytes
+      !
+      ! Last configuration change at 02:00:02 UTC Thu Jan 26 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname R2
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      no ip domain-lookup
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 2.2.2.2 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       switchport access vlan 10
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       no switchport
+       ip address 5.0.1.1 255.255.255.252
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport access vlan 10
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
+      interface Vlan10
+       ip address 192.168.1.2 255.255.255.0
+      !
+      router bgp 65001
+       bgp router-id 2.2.2.2
+       bgp log-neighbor-changes
+       neighbor 69.69.69.69 remote-as 65000
+       neighbor 69.69.69.69 ebgp-multihop 2
+       neighbor 69.69.69.69 update-source Loopback0
+       !
+       address-family ipv4
+        network 192.168.1.0
+        neighbor 69.69.69.69 activate
+       exit-address-family
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip route 69.69.69.69 255.255.255.255 5.0.1.2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^CC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^CC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^CC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n4
+    label: iosvl2-2
+    node_definition: iosvl2
+    ram: 2000
+    tags: []
+    x: 1195
+    y: -14
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
