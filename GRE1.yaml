@@ -64,8 +64,8 @@ nodes:
       \ 93JPELBK90B\ndiagnostic bootup level minimal\nmemory free low-watermark processor\
       \ 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n!\n!\n!\n!\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface GigabitEthernet1\n\
-      \ ip address 10.0.0.1 255.255.255.252\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 192.168.1.1 255.255.255.0\n\
+      \ ip address 10.0.0.1 255.255.255.252\n negotiation auto\n \n no shut \n no mop enabled\n\
+      \ no mop sysid\n!\ninterface GigabitEthernet2\n \n no shut \n ip address 192.168.1.1 255.255.255.0\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
       \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
       !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
@@ -152,8 +152,8 @@ nodes:
       \ 9PZOROMLGTA\ndiagnostic bootup level minimal\nmemory free low-watermark processor\
       \ 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n!\n!\n!\n!\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface GigabitEthernet1\n\
-      \ ip address 10.0.0.2 255.255.255.252\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 10.0.1.1 255.255.255.252\n\
+      \ ip address 10.0.0.2 255.255.255.252\n \n no shut\n negotiation auto\n no mop enabled\n\
+      \ no mop sysid\n!\ninterface GigabitEthernet2\n \n no shut \n ip address 10.0.1.1 255.255.255.252\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
       \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
       !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
@@ -241,7 +241,7 @@ nodes:
       \ 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n!\n!\n!\n!\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface GigabitEthernet1\n\
       \ ip address 10.0.1.2 255.255.255.252\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 10.0.2.2 255.255.255.252\n\
+      \ no mop sysid\n!\ninterface GigabitEthernet2\n \n no shut\n ip address 10.0.2.2 255.255.255.252\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
       \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
       !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
@@ -327,14 +327,15 @@ nodes:
       \ 0275156F 719BB2F0\n  D697DF7F 28\n  \tquit\n!\nlicense udi pid CSR1000V sn\
       \ 9QOWQPLT8VH\ndiagnostic bootup level minimal\nmemory free low-watermark processor\
       \ 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n!\n!\n!\n!\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface GigabitEthernet1\n\
+      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface GigabitEthernet1\n\ no shut\n\
       \ ip address 10.0.2.1 255.255.255.252\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 192.168.2.1 255.255.255.0\n\
+      \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 192.168.2.1 255.255.255.0\n\ no shut\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
       \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
       !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\nip forward-protocol nd\nno ip http server\n\
-      ip http secure-server\n!\nip route 0.0.0.0 0.0.0.0 10.0.2.2\n!\n!\n!\n!\n!\n\
+      ip http secure-server\n!\nip route 0.0.0.0 0.0.0.0 10.0.2.2\n!\n!\n!\n!\n!\n\n
+      router ospf 1\n network 192.168.2.0 0.0.0.255\n\ area 0\n\
       !\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging\
       \ synchronous\n stopbits 1\nline vty 0\n login\n transport input ssh\nline vty\
       \ 1\n login\n length 0\n transport input ssh\nline vty 2 4\n login\n transport\
