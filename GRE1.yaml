@@ -296,8 +296,8 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 4616 bytes\n\
-      !\n! Last configuration change at 02:13:11 UTC Thu Feb 2 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 4621 bytes\n\
+      !\n! Last configuration change at 02:28:19 UTC Thu Feb 2 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       ! Call-home is enabled by Smart-Licensing.\nservice call-home\nplatform qfp\
       \ utilization monitor load 80\nplatform punt-keepalive disable-kernel-core\n\
@@ -339,10 +339,10 @@ nodes:
       \ hash sha256\n authentication pre-share\n group 24\ncrypto isakmp key cisco\
       \ address 10.0.0.1        255.255.255.252\n!\n!\ncrypto ipsec transform-set\
       \ transform1 esp-aes esp-sha-hmac\n mode transport\n!\n!\n!\ncrypto map ipsec1\
-      \ 10 ipsec-isakmp\n ! Incomplete\n set transform-set transform1\n match address\
-      \ ipsecacl1\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Tunnel1\n ip address 172.16.0.2\
-      \ 255.255.255.0\n tunnel source 10.0.2.1\n tunnel destination 10.0.0.1\n!\n\
-      interface GigabitEthernet1\n ip address 10.0.2.1 255.255.255.252\n negotiation\
+      \ 10 ipsec-isakmp\n set peer 10.0.0.1\n set transform-set transform1\n match\
+      \ address ipsecacl1\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Tunnel1\n ip address\
+      \ 172.16.0.2 255.255.255.0\n tunnel source 10.0.2.1\n tunnel destination 10.0.0.1\n\
+      !\ninterface GigabitEthernet1\n ip address 10.0.2.1 255.255.255.252\n negotiation\
       \ auto\n no mop enabled\n no mop sysid\n crypto map ipsec1\n!\ninterface GigabitEthernet2\n\
       \ ip address 192.168.2.1 255.255.255.0\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet3\n no ip address\n shutdown\n negotiation\
