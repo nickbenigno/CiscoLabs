@@ -24,8 +24,8 @@ links:
     label: csr1000v-2-GigabitEthernet2<->csr1000v-3-GigabitEthernet1
 nodes:
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 4177 bytes\n\
-      !\n! Last configuration change at 00:52:59 UTC Thu Feb 2 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 4613 bytes\n\
+      !\n! Last configuration change at 02:12:54 UTC Thu Feb 2 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       ! Call-home is enabled by Smart-Licensing.\nservice call-home\nplatform qfp\
       \ utilization monitor load 80\nplatform punt-keepalive disable-kernel-core\n\
@@ -63,18 +63,24 @@ nodes:
       \ 0275156F 719BB2F0\n  D697DF7F 28\n  \tquit\n!\nlicense udi pid CSR1000V sn\
       \ 93JPELBK90B\ndiagnostic bootup level minimal\nmemory free low-watermark processor\
       \ 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n!\n!\n!\n!\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Tunnel1\n\
-      \ ip address 172.16.0.1 255.255.255.0\n tunnel source 10.0.0.1\n tunnel destination\
-      \ 10.0.2.1\n!\ninterface GigabitEthernet1\n ip address 10.0.0.1 255.255.255.252\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n\
+      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto isakmp policy 1\n encryption aes 256\n\
+      \ hash sha256\n authentication pre-share\n group 24\ncrypto isakmp key cisco\
+      \ address 10.0.2.1        255.255.255.252\n!\n!\ncrypto ipsec transform-set\
+      \ transform1 esp-aes esp-sha-hmac\n mode transport\n!\n!\n!\ncrypto map ipsec\
+      \ 10 ipsec-isakmp\n set peer 10.0.2.1\n set transform-set transform1\n match\
+      \ address ipsec1\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Tunnel1\n ip address 172.16.0.1\
+      \ 255.255.255.0\n tunnel source 10.0.0.1\n tunnel destination 10.0.2.1\n!\n\
+      interface GigabitEthernet1\n ip address 10.0.0.1 255.255.255.252\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n crypto map ipsec\n!\ninterface GigabitEthernet2\n\
       \ ip address 192.168.1.1 255.255.255.0\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet3\n no ip address\n shutdown\n negotiation\
       \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n no ip\
       \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
       router ospf 1\n network 172.16.0.0 0.0.0.255 area 0\n network 192.168.1.0 0.0.0.255\
       \ area 0\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
-      !\nip route 0.0.0.0 0.0.0.0 10.0.0.2\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n\
-      !\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits\
+      !\nip route 0.0.0.0 0.0.0.0 10.0.0.2\n!\nip access-list extended ipsec1\n 10\
+      \ permit gre host 10.0.0.1 host 10.0.2.1\n!\n!\n!\n!\n!\n!\ncontrol-plane\n\
+      !\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits\
       \ 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n\
       \ transport input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n\
       \ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
@@ -115,7 +121,7 @@ nodes:
         type: physical
   - boot_disk_size: 0
     configuration: "Building configuration...\n\nCurrent configuration : 3986 bytes\n\
-      !\n! Last configuration change at 23:11:01 UTC Wed Feb 1 2023\n!\nversion 17.3\n\
+      !\n! Last configuration change at 02:13:00 UTC Thu Feb 2 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       ! Call-home is enabled by Smart-Licensing.\nservice call-home\nplatform qfp\
       \ utilization monitor load 80\nplatform punt-keepalive disable-kernel-core\n\
@@ -203,7 +209,7 @@ nodes:
         type: physical
   - boot_disk_size: 0
     configuration: "Building configuration...\n\nCurrent configuration : 3984 bytes\n\
-      !\n! Last configuration change at 23:11:07 UTC Wed Feb 1 2023\n!\nversion 17.3\n\
+      !\n! Last configuration change at 02:13:06 UTC Thu Feb 2 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       ! Call-home is enabled by Smart-Licensing.\nservice call-home\nplatform qfp\
       \ utilization monitor load 80\nplatform punt-keepalive disable-kernel-core\n\
@@ -290,8 +296,8 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 4175 bytes\n\
-      !\n! Last configuration change at 00:53:09 UTC Thu Feb 2 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 4616 bytes\n\
+      !\n! Last configuration change at 02:13:11 UTC Thu Feb 2 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       ! Call-home is enabled by Smart-Licensing.\nservice call-home\nplatform qfp\
       \ utilization monitor load 80\nplatform punt-keepalive disable-kernel-core\n\
@@ -329,18 +335,24 @@ nodes:
       \ 0275156F 719BB2F0\n  D697DF7F 28\n  \tquit\n!\nlicense udi pid CSR1000V sn\
       \ 9QOWQPLT8VH\ndiagnostic bootup level minimal\nmemory free low-watermark processor\
       \ 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n!\n!\n!\n!\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Tunnel1\n\
-      \ ip address 172.16.0.2 255.255.255.0\n tunnel source 10.0.2.1\n tunnel destination\
-      \ 10.0.0.1\n!\ninterface GigabitEthernet1\n ip address 10.0.2.1 255.255.255.252\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n\
+      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto isakmp policy 1\n encryption aes 256\n\
+      \ hash sha256\n authentication pre-share\n group 24\ncrypto isakmp key cisco\
+      \ address 10.0.0.1        255.255.255.252\n!\n!\ncrypto ipsec transform-set\
+      \ transform1 esp-aes esp-sha-hmac\n mode transport\n!\n!\n!\ncrypto map ipsec1\
+      \ 10 ipsec-isakmp\n ! Incomplete\n set transform-set transform1\n match address\
+      \ ipsecacl1\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Tunnel1\n ip address 172.16.0.2\
+      \ 255.255.255.0\n tunnel source 10.0.2.1\n tunnel destination 10.0.0.1\n!\n\
+      interface GigabitEthernet1\n ip address 10.0.2.1 255.255.255.252\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n crypto map ipsec1\n!\ninterface GigabitEthernet2\n\
       \ ip address 192.168.2.1 255.255.255.0\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet3\n no ip address\n shutdown\n negotiation\
       \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n no ip\
       \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
-      router ospf 1\n network 172.16.0.0 0.0.0.255 area 0\n network 192.168.2.0 0.0.0.0\
+      router ospf 1\n network 172.16.0.0 0.0.0.255 area 0\n network 192.168.2.0 0.0.0.255\
       \ area 0\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
-      !\nip route 0.0.0.0 0.0.0.0 10.0.2.2\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n\
-      !\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits\
+      !\nip route 0.0.0.0 0.0.0.0 10.0.2.2\n!\nip access-list extended ipsecacl1\n\
+      \ 10 permit gre host 10.0.2.1 host 10.0.0.1\n!\n!\n!\n!\n!\n!\ncontrol-plane\n\
+      !\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits\
       \ 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n\
       \ transport input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n\
       \ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
