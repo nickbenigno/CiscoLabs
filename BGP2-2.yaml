@@ -126,8 +126,8 @@ nodes:
       \ ip address 192.168.0.2 255.255.255.252\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 192.168.1.1 255.255.255.252\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
-      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no ip address\n no shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n no shutdown\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\nrouter bgp 65001\n bgp log-neighbor-changes\n\
       \ neighbor 2.2.2.2 remote-as 65001\n neighbor 2.2.2.2 update-source Loopback0\n\
       \ neighbor 4.4.4.4 remote-as 65001\n neighbor 4.4.4.4 update-source Loopback0\n\
@@ -245,8 +245,8 @@ nodes:
       \ ip address 192.168.1.2 255.255.255.252\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 11.0.0.1 255.255.255.252\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
-      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no ip address\n no shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n no shutdown\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\nrouter bgp 65001\n bgp router-id 4.4.4.4\n\
       \ bgp log-neighbor-changes\n network 1.1.1.1 mask 255.255.255.255\n network\
       \ 4.4.4.4 mask 255.255.255.255\n network 5.5.5.5 mask 255.255.255.255\n network\
@@ -371,8 +371,8 @@ nodes:
       \ ip address 10.0.0.1 255.255.255.252\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 192.168.0.1 255.255.255.252\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
-      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no ip address\n no shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n no shutdown\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\nrouter bgp 65001\n bgp router-id 2.2.2.2\n\
       \ bgp log-neighbor-changes\n network 1.1.1.1 mask 255.255.255.255\n network\
       \ 2.2.2.2 mask 255.255.255.255\n network 3.3.3.3 mask 255.255.255.255\n network\
@@ -496,8 +496,8 @@ nodes:
       \ ip address 10.0.0.2 255.255.255.252\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 10.0.1.1 255.255.255.252\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
-      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no ip address\n no shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n no shutdown\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\nrouter bgp 65000\n bgp router-id 1.1.1.1\n\
       \ bgp log-neighbor-changes\n network 1.1.1.1 mask 255.255.255.255\n network\
       \ 6.6.6.6 mask 255.255.255.255\n network 10.0.0.0 mask 255.255.255.252\n network\
@@ -619,8 +619,8 @@ nodes:
       \ ip address 11.0.0.2 255.255.255.252\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 11.0.1.1 255.255.255.252\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
-      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no ip address\n no shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n no shutdown\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\nrouter bgp 65002\n bgp router-id 5.5.5.5\n\
       \ bgp log-neighbor-changes\n network 5.5.5.5 mask 255.255.255.255\n network\
       \ 11.0.1.0 mask 255.255.255.252\n neighbor 4.4.4.4 remote-as 65001\n neighbor\
@@ -739,12 +739,12 @@ nodes:
       \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
       interface Loopback0\n ip address 6.6.6.6 255.255.255.255\n!\ninterface GigabitEthernet1\n\
-      \ ip address 192.168.1.1 255.255.255.0\n ip nat inside\n negotiation auto\n\
+      \ ip address 192.168.1.1 255.255.255.0\n no shutdown\n ip nat inside\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n ip address\
-      \ 10.0.1.2 255.255.255.252\n ip nat outside\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet3\n ip address 11.0.1.2 255.255.255.252\n\
-      \ ip nat outside\n negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface\
-      \ GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no mop enabled\n\
+      \ 10.0.1.2 255.255.255.252\n no shutdown\n ip nat outside\n negotiation auto\n no mop enabled\n\
+      \ no mop sysid\n!\ninterface GigabitEthernet3 \n ip address 11.0.1.2 255.255.255.252\n\
+      \ ip nat outside\n  no shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface\
+      \ GigabitEthernet4\n no ip address\n no shutdown\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\nrouter bgp 320\n bgp router-id 6.6.6.6\n bgp log-neighbor-changes\n\
       \ network 47.16.19.0 mask 255.255.255.0\n neighbor 1.1.1.1 remote-as 65000\n\
       \ neighbor 1.1.1.1 ebgp-multihop 2\n neighbor 1.1.1.1 update-source Loopback0\n\
