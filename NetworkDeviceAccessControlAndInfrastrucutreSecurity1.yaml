@@ -748,7 +748,7 @@ nodes:
         label: port
         slot: 0
         type: physical
-  - boot_disk_size: 0
+  - boot_disk_size: 64
     configuration: |-
       #cloud-config
       hostname: CPU1
@@ -765,13 +765,13 @@ nodes:
       ifconfig ens2 192.168.4.101 netmask 255.255.255.0
       route add -net 0.0.0.0 gw 192.168.4.1
     cpu_limit: 100
-    cpus: 0
+    cpus: 1
     data_volume: 0
     hide_links: false
     id: n5
     label: ubuntu-0
     node_definition: ubuntu
-    ram: 0
+    ram: 2048
     tags: []
     x: 89
     y: 158
@@ -781,8 +781,8 @@ nodes:
         slot: 0
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 4423 bytes\n\
-      !\n! Last configuration change at 23:17:19 UTC Wed Mar 1 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 4424 bytes\n\
+      !\n! Last configuration change at 23:48:04 UTC Wed Mar 1 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       ! Call-home is enabled by Smart-Licensing.\nservice call-home\nplatform qfp\
       \ utilization monitor load 80\nplatform punt-keepalive disable-kernel-core\n\
@@ -830,10 +830,10 @@ nodes:
       \ dhcp\n ip nat outside\n negotiation auto\n no mop enabled\n no mop sysid\n\
       !\nip forward-protocol nd\nno ip http server\nip http secure-server\n!\nip nat\
       \ pool pool1 192.168.50.40 192.168.50.45 netmask 255.255.255.0\nip nat pool\
-      \ pool2 192.168.4.1 192.168.4.3 netmask 255.255.255.0\nip nat inside source\
+      \ pool2 192.168.5.1 192.168.5.3 netmask 255.255.255.0\nip nat inside source\
       \ list nat1 pool pool1 overload\nip nat outside source list nat2 pool pool2\n\
       !\nip access-list extended nat1\n 10 permit ip 192.168.0.0 0.0.7.255 any\nip\
-      \ access-list extended nat2\n 10 permit ip 192.168.1.0 0.0.0.255 any\n!\n!\n\
+      \ access-list extended nat2\n 10 permit ip 192.168.50.0 0.0.0.255 any\n!\n!\n\
       !\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n\
       \ logging synchronous\n stopbits 1\nline vty 0 4\n login local\n transport input\
       \ ssh\nline vty 5 15\n login local\n transport input ssh\n!\ncall-home\n ! If\
