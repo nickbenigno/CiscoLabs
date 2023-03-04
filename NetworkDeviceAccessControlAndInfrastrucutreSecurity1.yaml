@@ -45,9 +45,9 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 3173 bytes
+      Current configuration : 4024 bytes
       !
-      ! Last configuration change at 23:17:40 UTC Wed Mar 1 2023
+      ! Last configuration change at 17:15:07 UTC Sat Mar 4 2023 by cisco
       !
       version 15.2
       service timestamps debug datetime msec
@@ -64,7 +64,30 @@ nodes:
       no logging console
       !
       username cisco secret 8 $8$tLpXHJcbsyiwDv$06CcBLz./CDlK4.Y7ragO0EPWsG8sY9676z2Mha0En.
-      no aaa new-model
+      aaa new-model
+      !
+      !
+      aaa group server tacacs+ tacacsgui
+       server name tacacsgui
+      !
+      aaa authentication login default group tacacsgui local
+      aaa authentication enable default group tacasgui enable
+      aaa authorization config-commands
+      aaa authorization exec default none
+      aaa authorization commands 0 default group tacacsgui if-authenticated
+      aaa authorization commands 1 default group tacacsgui if-authenticated
+      aaa authorization commands 15 default group tacacsgui if-authenticated
+      aaa accounting exec default start-stop group tacasgui
+      aaa accounting commands 0 default start-stop group tacacsgui
+      aaa accounting commands 1 default start-stop group tacacsgui
+      aaa accounting commands 15 default start-stop group tacacsgui
+      !
+      !
+      !
+      !
+      !
+      !
+      aaa session-id common
       no process cpu extended history
       no process cpu autoprofile hog
       !
@@ -101,23 +124,23 @@ nodes:
       !
       interface GigabitEthernet0/0
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/1
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/2
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/3
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet1/0
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface Vlan1
        ip address 192.168.4.51 255.255.255.0
@@ -128,6 +151,7 @@ nodes:
       ip http secure-server
       !
       ip route 0.0.0.0 0.0.0.0 192.168.4.1
+      ip tacacs source-interface Vlan1
       ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
@@ -136,10 +160,15 @@ nodes:
       !
       !
       !
+      tacacs server tacacsgui
+       address ipv4 192.168.50.227
+       key 3q2w1e4r5t7u8i9
+      !
+      !
       !
       control-plane
       !
-      banner exec ^CC
+      banner exec ^CCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -148,7 +177,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner incoming ^CC
+      banner incoming ^CCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -157,7 +186,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner login ^CC
+      banner login ^CCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -169,12 +198,11 @@ nodes:
       !
       line con 0
        exec-timeout 0 0
+       privilege level 15
       line aux 0
       line vty 0 4
-       login local
        transport input ssh
       line vty 5 15
-       login local
        transport input ssh
       !
       !
@@ -218,9 +246,9 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 3109 bytes
+      Current configuration : 3959 bytes
       !
-      ! Last configuration change at 23:17:14 UTC Wed Mar 1 2023
+      ! Last configuration change at 17:16:18 UTC Sat Mar 4 2023 by cisco
       !
       version 15.2
       service timestamps debug datetime msec
@@ -237,7 +265,30 @@ nodes:
       no logging console
       !
       username cisco secret 8 $8$tLpXHJcbsyiwDv$06CcBLz./CDlK4.Y7ragO0EPWsG8sY9676z2Mha0En.
-      no aaa new-model
+      aaa new-model
+      !
+      !
+      aaa group server tacacs+ tacacsgui
+       server name tacacsgui
+      !
+      aaa authentication login default group tacacsgui local
+      aaa authentication enable default group tacasgui enable
+      aaa authorization config-commands
+      aaa authorization exec default none
+      aaa authorization commands 0 default group tacacsgui if-authenticated
+      aaa authorization commands 1 default group tacacsgui if-authenticated
+      aaa authorization commands 15 default group tacacsgui if-authenticated
+      aaa accounting exec default start-stop group tacasgui
+      aaa accounting commands 0 default start-stop group tacacsgui
+      aaa accounting commands 1 default start-stop group tacacsgui
+      aaa accounting commands 15 default start-stop group tacacsgui
+      !
+      !
+      !
+      !
+      !
+      !
+      aaa session-id common
       no process cpu extended history
       no process cpu autoprofile hog
       !
@@ -274,19 +325,19 @@ nodes:
       !
       interface GigabitEthernet0/0
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/1
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/2
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/3
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface Vlan1
        ip address 192.168.2.50 255.255.255.0
@@ -297,6 +348,7 @@ nodes:
       ip http secure-server
       !
       ip route 0.0.0.0 0.0.0.0 192.168.2.1
+      ip tacacs source-interface Vlan1
       ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
@@ -305,10 +357,15 @@ nodes:
       !
       !
       !
+      tacacs server tacacsgui
+       address ipv4 192.168.50.227
+       key 3q2w1e4r5t7u8i9
+      !
+      !
       !
       control-plane
       !
-      banner exec ^CC
+      banner exec ^CCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -317,7 +374,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner incoming ^CC
+      banner incoming ^CCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -326,7 +383,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner login ^CC
+      banner login ^CCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -338,12 +395,11 @@ nodes:
       !
       line con 0
        exec-timeout 0 0
+       privilege level 15
       line aux 0
       line vty 0 4
-       login local
        transport input ssh
       line vty 5 15
-       login local
        transport input ssh
       !
       !
@@ -381,6 +437,12 @@ nodes:
         type: physical
   - boot_disk_size: 0
     configuration: |-
+      Building configuration...
+
+      Current configuration : 4824 bytes
+      !
+      ! Last configuration change at 17:14:38 UTC Sat Mar 4 2023 by admin1
+      !
       version 15.2
       service timestamps debug datetime msec
       service timestamps log datetime msec
@@ -393,6 +455,7 @@ nodes:
       boot-end-marker
       !
       !
+      no logging console
       enable secret 8 $8$1MfdDOLYrP42ev$Qj04M.Q1vqa12aBbke2K44GnbrlPzNl/qfBDE0JKc9g
       !
       username cisco secret 8 $8$tLpXHJcbsyiwDv$06CcBLz./CDlK4.Y7ragO0EPWsG8sY9676z2Mha0En.
@@ -405,9 +468,8 @@ nodes:
       aaa group server tacacs+ tacacsgui
        server name tacacsgui
       !
-      aaa authentication login default group tacacsgui
+      aaa authentication login default group tacacsgui local
       aaa authentication enable default group tacasgui enable
-      aaa authorization console
       aaa authorization config-commands
       aaa authorization exec default none
       aaa authorization commands 0 default group tacacsgui if-authenticated
@@ -460,19 +522,19 @@ nodes:
       !
       interface GigabitEthernet0/0
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/1
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/2
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/3
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface Vlan1
        ip address 192.168.4.50 255.255.255.0
@@ -495,7 +557,7 @@ nodes:
       tacacs server tacasgui
       tacacs server tacacsgui
        address ipv4 192.168.50.227
-       key tacacsgui
+       key 3q2w1e4r5t7u8i9
       !
       !
       !
@@ -508,7 +570,7 @@ nodes:
       privilege configure level 5 interface
       privilege exec level 2 configure terminal
       privilege exec level 2 configure
-      banner exec ^CCCC
+      banner exec ^CCCCC
       IOSv - Cisco Systems Confidential -
 
 
@@ -520,7 +582,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner incoming ^CCCC
+      banner incoming ^CCCCC
       IOSv - Cisco Systems Confidential -
 
 
@@ -532,7 +594,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner login ^CCCC
+      banner login ^CCCCC
       IOSv - Cisco Systems Confidential -
 
 
@@ -551,23 +613,23 @@ nodes:
        logging synchronous
       line aux 0
       line vty 0 4
-       transport input all
+       transport input ssh
       line vty 5 15
-       transport input all
+       transport input ssh
       !
       !
       end
     cpu_limit: 100
-    cpus: 0
+    cpus: 1
     data_volume: 0
     hide_links: false
     id: n2
     label: iosvl2-0
     node_definition: iosvl2
-    ram: 768
+    ram: 2096
     tags: []
-    x: 240
-    y: 294
+    x: 236
+    y: 300
     interfaces:
       - id: i0
         label: Loopback0
@@ -592,9 +654,9 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 3112 bytes
+      Current configuration : 3962 bytes
       !
-      ! Last configuration change at 23:17:34 UTC Wed Mar 1 2023
+      ! Last configuration change at 17:16:43 UTC Sat Mar 4 2023 by cisco
       !
       version 15.2
       service timestamps debug datetime msec
@@ -611,7 +673,30 @@ nodes:
       no logging console
       !
       username cisco secret 8 $8$tLpXHJcbsyiwDv$06CcBLz./CDlK4.Y7ragO0EPWsG8sY9676z2Mha0En.
-      no aaa new-model
+      aaa new-model
+      !
+      !
+      aaa group server tacacs+ tacacsgui
+       server name tacacsgui
+      !
+      aaa authentication login default group tacacsgui local
+      aaa authentication enable default group tacasgui enable
+      aaa authorization config-commands
+      aaa authorization exec default none
+      aaa authorization commands 0 default group tacacsgui if-authenticated
+      aaa authorization commands 1 default group tacacsgui if-authenticated
+      aaa authorization commands 15 default group tacacsgui if-authenticated
+      aaa accounting exec default start-stop group tacasgui
+      aaa accounting commands 0 default start-stop group tacacsgui
+      aaa accounting commands 1 default start-stop group tacacsgui
+      aaa accounting commands 15 default start-stop group tacacsgui
+      !
+      !
+      !
+      !
+      !
+      !
+      aaa session-id common
       no process cpu extended history
       no process cpu autoprofile hog
       !
@@ -648,19 +733,19 @@ nodes:
       !
       interface GigabitEthernet0/0
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/1
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/2
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface GigabitEthernet0/3
        negotiation auto
-       no cdp enable
+       no cdp tlv app
       !
       interface Vlan1
        ip address 192.168.3.50 255.255.255.0
@@ -671,6 +756,7 @@ nodes:
       ip http secure-server
       !
       ip route 0.0.0.0 0.0.0.0 192.168.3.1
+      ip tacacs source-interface Vlan1
       ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
@@ -679,10 +765,15 @@ nodes:
       !
       !
       !
+      tacacs server tacacsgui
+       address ipv4 192.168.50.227
+       key 3q2w1e4r5t7u8i9
+      !
+      !
       !
       control-plane
       !
-      banner exec ^CCC
+      banner exec ^CCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -691,7 +782,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner incoming ^CCC
+      banner incoming ^CCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -700,7 +791,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner login ^CCC
+      banner login ^CCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -712,12 +803,11 @@ nodes:
       !
       line con 0
        exec-timeout 0 0
+       privilege level 15
       line aux 0
       line vty 0 4
-       login local
        transport input ssh
       line vty 5 15
-       login local
        transport input ssh
       !
       !
@@ -772,16 +862,26 @@ nodes:
         slot: 0
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6538 bytes\n\
-      !\n! Last configuration change at 18:12:56 UTC Thu Mar 2 2023\n!\nversion 17.3\n\
-      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
-      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
-      \ disable-kernel-core\nplatform console serial\n!\nhostname R1\n!\nboot-start-marker\n\
-      boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
-      !\n!\n!\nip domain name R1\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n\
-      !\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n\
-      \ enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-1146578515\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 7393 bytes\n\
+      !\n! Last configuration change at 17:16:01 UTC Sat Mar 4 2023 by cisco\n!\n\
+      version 17.3\nservice timestamps debug datetime msec\nservice timestamps log\
+      \ datetime msec\nservice call-home\nplatform qfp utilization monitor load 80\n\
+      platform punt-keepalive disable-kernel-core\nplatform console serial\n!\nhostname\
+      \ R1\n!\nboot-start-marker\nboot-end-marker\n!\n!\nno logging console\n!\naaa\
+      \ new-model\n!\n!\naaa group server tacacs+ tacacsgui\n server name tacacsgui\n\
+      !\naaa authentication login default group tacacsgui local\naaa authentication\
+      \ enable default group tacasgui enable\naaa authorization config-commands\n\
+      aaa authorization exec default none\naaa authorization commands 0 default group\
+      \ tacacsgui if-authenticated\naaa authorization commands 1 default group tacacsgui\
+      \ if-authenticated\naaa authorization commands 15 default group tacacsgui if-authenticated\n\
+      aaa accounting exec default start-stop group tacasgui\naaa accounting commands\
+      \ 0 default start-stop group tacacsgui\naaa accounting commands 1 default start-stop\
+      \ group tacacsgui\naaa accounting commands 15 default start-stop group tacacsgui\n\
+      !\n!\n!\n!\n!\n!\naaa session-id common\n!\n!\n!\n!\n!\n!\n!\nip domain name\
+      \ R1\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n!\nsubscriber templating\n\
+      !\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n!\n!\n!\n!\n!\n!\n!\n\
+      !\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n\
+      \ revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-1146578515\n\
       \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1146578515\n\
       \ revocation-check none\n rsakeypair TP-self-signed-1146578515\n!\n!\ncrypto\
       \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
@@ -813,31 +913,31 @@ nodes:
       quit\ncrypto pki certificate chain TP-self-signed-1146578515\n certificate self-signed\
       \ 01\n  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n\
       \  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n\
-      \  69666963 6174652D 31313436 35373835 3135301E 170D3233 30333032 31363432\n\
-      \  34345A17 0D333330 33303131 36343234 345A3031 312F302D 06035504 03132649\n\
+      \  69666963 6174652D 31313436 35373835 3135301E 170D3233 30333033 31383032\n\
+      \  31375A17 0D333330 33303231 38303231 375A3031 312F302D 06035504 03132649\n\
       \  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 31343635\n\
       \  37383531 35308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n\
-      \  0A028201 0100A2BB 5D2F4EA4 F9374257 46A5861D BEF9A1F5 9E2F94DF 4960F9E2\n\
-      \  DA5C0AB3 FF1EB50C 72731CDF 5529A500 3BBB7A8E 6735CFE4 883A724B 4B1E0C26\n\
-      \  1108B2BA B7B410E6 4D2A133C 2E5F026C 5D31267B 275B99A7 25F68E04 F05FB29B\n\
-      \  D2368CF1 7BD3B8BD 89324762 D2596D44 72D078B2 91404B65 84810E13 693B1646\n\
-      \  10370D87 CACE2FFA 25C55D1B E021C0A4 0A9F3E72 5427EE76 257DB069 6DA0F762\n\
-      \  5FFECEB4 7E8B2D2E 1D998F7A 1E2C81B1 987F4083 36DEBAD4 64133B6D 38271DBB\n\
-      \  9D8AADD6 F3962491 10ED1835 5667E865 8751F917 4C5D2729 9E25FA27 352F7EDE\n\
-      \  1F657E59 0F58D826 B055CB7E 99D96DB1 02D0E8C8 EC717158 F3998BC1 042800ED\n\
-      \  432FE5E3 55C10203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n\
-      \  301F0603 551D2304 18301680 14921F5F 90727E6D 3FF113AB FDEFD3D8 6729721A\n\
-      \  E7301D06 03551D0E 04160414 921F5F90 727E6D3F F113ABFD EFD3D867 29721AE7\n\
-      \  300D0609 2A864886 F70D0101 05050003 82010100 4BEA577E 1321C505 6CCC6B97\n\
-      \  39496D60 A6F7EF19 3A9AFAAB 326F6041 FA0C841F FBAE7380 40867E6E 07B63950\n\
-      \  A9F20525 C66FE150 844FCC98 7A1E7208 AA3E562C 8FAA4009 A40C6C0D F6FE4F0D\n\
-      \  C989E10A 339D5974 CF91853B 672C7A1A 01A751A4 8B0C64B2 6C53C43F D2D0C45C\n\
-      \  87CA4C00 E0ED2190 5B324F6E D71ABF5E 7BDBC632 B5D978CE 461AF33E 97C31AB4\n\
-      \  165CDE65 19737689 14AE98C7 1CA3DBB7 331DC3DA 4E2C928F 2638D733 B817F613\n\
-      \  F5C01A92 BE2C2DFB 9A6F4358 C4900083 A53F8C55 FACA54CA 806080D8 EC5CB2AE\n\
-      \  184A48D1 11B55BAA BB702B13 F52E9F2E 1BA03B15 80B31422 D58E9253 41AFE8E2\n\
-      \  BBBCA7F2 98C70CBA 22A45CEE D41D5961 A0EF8430\n  \tquit\n!\nlicense udi pid\
-      \ CSR1000V sn 9ND7N1YRAK3\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \  0A028201 0100A4F9 17F1D5F4 40EAC076 BC8B5F56 662E742D 55F50B3A 40284DB6\n\
+      \  733FF697 6D5BCE00 D8836519 1C9DF52B 755B5A46 88D695C3 C345726F C6B25BFC\n\
+      \  E13C2F1E 77CF8FD4 FBFF1825 7BDA9742 86FD0BDB 8370DF1F AEC7F411 35FC66EE\n\
+      \  B9BE2DD1 F9BB748C 0A36B10B 4D39A973 6BF9637D 443DE8A9 34100021 60410606\n\
+      \  5F7505BF D1D9F9FE CBC06290 748929C5 5098AABE 4B2DE5F8 9718782B D1E2551D\n\
+      \  663F1043 73011671 F179BE5A 49A1A959 2B0E81A5 D4FCCD7F D8E8A30E FA05E50C\n\
+      \  5A3221EA 017B569F 77F8A863 70D732FB 24E06DEC E0B27CFB A4653A60 DD23A725\n\
+      \  69CF4ADE 515B0928 05A257A4 6FB83010 39CA0108 58F0370C 8231FE8D 1F6BF86F\n\
+      \  DB7CFA18 C1470203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n\
+      \  301F0603 551D2304 18301680 146DCA13 2065B30A 88BEA7B7 CEE87D67 B7E93DD1\n\
+      \  BD301D06 03551D0E 04160414 6DCA1320 65B30A88 BEA7B7CE E87D67B7 E93DD1BD\n\
+      \  300D0609 2A864886 F70D0101 05050003 82010100 53CBA268 4DE48E0F 20B69470\n\
+      \  A404178C CF744445 C81140D0 7D6AA8EF 4D5C1456 3B62D0FD 5E80F1E3 71CA1F11\n\
+      \  ADB9F3E1 122E4F22 264CFB6F 436A1309 8BBC49B1 1617D940 CCDA7B25 66880FC0\n\
+      \  D7C43066 41B6A953 2D3ACB41 CA87AF65 2BFA8B0B A3B5D267 E2385A2C 9FEE572A\n\
+      \  53870346 2DA81569 E3D176E7 7277CBD5 5CB4C505 34742839 85583E0F 526ACF78\n\
+      \  5908A86D 79E44E03 4A8D86C2 77A03240 4EEF0B5E 53671D3E 972099B0 3F71C390\n\
+      \  FA97ABEF 2435B04D 5AD5A58E 816938F6 5E5757B7 A1833454 0695BF31 0634C475\n\
+      \  5D5BD0AC 439ADFCD 9C9A8BA0 B31B6D94 2E159B61 39E5DAB1 9628442B 759A0485\n\
+      \  7FB7B149 653E611E A0B6DC2B F5263E60 B61EBB11\n  \tquit\n!\nlicense udi pid\
+      \ CSR1000V sn 9CX8MQPVXDJ\ndiagnostic bootup level minimal\nmemory free low-watermark\
       \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\nusername cisco secret\
       \ 8 $8$tLpXHJcbsyiwDv$06CcBLz./CDlK4.Y7ragO0EPWsG8sY9676z2Mha0En.\n!\nredundancy\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
@@ -850,17 +950,19 @@ nodes:
       \ forward-protocol nd\nno ip http server\nip http secure-server\n!\nip nat pool\
       \ pool1 192.168.50.40 192.168.50.45 netmask 255.255.255.0\nip nat pool pool2\
       \ 192.168.5.1 192.168.5.3 netmask 255.255.255.0\nip nat inside source list nat1\
-      \ pool pool1 overload\nip nat outside source list nat2 pool pool2\n!\nip access-list\
-      \ extended nat1\n 10 permit ip 192.168.0.0 0.0.7.255 any\nip access-list extended\
-      \ nat2\n 10 permit ip 192.168.50.0 0.0.0.255 any\n!\n!\n!\n!\n!\n!\ncontrol-plane\n\
-      !\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits\
-      \ 1\nline vty 0 4\n login local\n transport input ssh\nline vty 5 15\n login\
-      \ local\n transport input ssh\n!\ncall-home\n ! If contact email address in\
-      \ call-home is configured as sch-smart-licensing@cisco.com\n ! the email address\
-      \ configured in Cisco Smart License Portal will be used as contact email address\
-      \ to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
-      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
-      !\n!\n!\n!\nend"
+      \ pool pool1 overload\nip nat outside source list nat2 pool pool2\nip tacacs\
+      \ source-interface GigabitEthernet4\n!\nip access-list extended nat1\n 10 permit\
+      \ ip 192.168.0.0 0.0.7.255 any\nip access-list extended nat2\n 10 permit ip\
+      \ 192.168.50.0 0.0.0.255 any\n!\n!\n!\n!\ntacacs server tacacsgui\n address\
+      \ ipv4 192.168.50.227\n key 3q2w1e4r5t7u8i9\n!\n!\n!\n!\ncontrol-plane\n!\n\
+      !\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n privilege level 15\n logging\
+      \ synchronous\n stopbits 1\nline vty 0 4\n transport input ssh\nline vty 5 15\n\
+      \ transport input ssh\n!\ncall-home\n ! If contact email address in call-home\
+      \ is configured as sch-smart-licensing@cisco.com\n ! the email address configured\
+      \ in Cisco Smart License Portal will be used as contact email address to send\
+      \ SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n profile\
+      \ \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n!\n!\n!\n\
+      !\nend"
     cpu_limit: 100
     cpus: 1
     data_volume: 0
