@@ -1,0 +1,170 @@
+ip access-list extended ACL-IPSEC 
+    permit udp any any eq non500-isakmp 
+    permit udp any any eq isakmp
+
+ip access-list extended ACL-PING-TRACEROUTE
+    permit icmp any any echo 
+    permit icmp any any echo-reply 
+    permit icmp any any echo-reply 
+    permit icmp any any ttl-exceeded
+    permit icmp any any port-unreachable
+    permit udp any any range 33434 33463 ttl eq 1
+
+ip access-list extended ACL-DHCP
+    permit udp any eq bootps any eq bootps 
+    permit udp any eq bootpc any eq bootpc
+    permit udp any eq 67 any eq 67
+    permit udp any eq 68 any eq 68
+
+ip access-list extended ACL-TACACS
+    permit tcp any any eq 49 
+
+ip access-list extended ACL-YOUTUBE
+    permit tcp any host www.youtube.com eq www
+
+ip access-list extended ACL-WEB
+    permit tcp any any eq www
+
+ip access-list extended ACL-SSH 
+    permit tcp any any eq 22
+    permit tcp any eq 22 any 
+
+zone security OUTSIDE
+    description internet facing zone. 
+
+zone security SECURITYZONE
+    description deny youtube, inspect everything else.
+
+zone security ZONE1
+    description pass everything except webtraffic which will be inspected. 
+
+zone security ZONE2
+    description pass everythign except webtraffic which will be inspected.
+
+
+class-map type inspect match-any CLASS-OUTSIDE-TO-SELF-PASS
+    match access-group name ACL-IPSEC
+    match access-group name ACL-PING-TRACEROUTE
+    match access-group name ACL-DHCP 
+    match access-group name ACL-TACACS
+    match access-group name ACL-WEB
+    match access-group name ACL-SSH
+    match access-group name ACL-YOUTUBE
+
+
+class-map type inspect match-any CLASS-SELF-TO-ZONE1-PASS
+    match access-group name ACL-IPSEC
+    match access-group name ACL-PING-TRACEROUTE
+    match access-group name ACL-DHCP 
+    match access-group name ACL-TACACS
+    match access-group name ACL-YOUTUBE
+
+
+class-map type inspect match-any CLASS-SELF-TO-ZONE1-INSPECT
+    match access-group name ACL-WEB
+    match access-group name ACL-SSH
+
+class-map type inspect match-any CLASS-SELF-TO-ZONE2-PASS
+    match access-group name ACL-IPSEC
+    match access-group name ACL-PING-TRACEROUTE
+    match access-group name ACL-DHCP 
+    match access-group name ACL-TACACS
+    match access-group name ACL-YOUTUBE
+
+class-map type inspect match-any CLASS-SELF-TO-ZONE2-INSPECT
+    match access-group name ACL-WEB
+    match access-group name ACL-SSH
+
+
+class-map type inspect match-any CLASS-SELF-TO-SECURITYZONE-INSPECT
+    match access-group name ACL-IPSEC
+    match access-group name ACL-PING-TRACEROUTE
+    match access-group name ACL-DHCP 
+    match access-group name ACL-TACACS
+    match access-group name ACL-WEB
+    match access-group name ACL-SSH
+
+
+class-map type inspect match-any CLASS-SELF-TO-SECURITYZONE-DROP
+    match access-group name ACL-YOUTUBE
+
+
+policy-map type inspect POLICY-OUTSIDE-TO-SELF
+    class type inspect CLASS-OUTSIDE-TO-SELF-PASS
+        pass 
+    class class-default 
+        pass 
+
+policy-map type inspect POLICY-SELF-TO-ZONE1
+    class type inspect CLASS-SELF-TO-ZONE1-PASS
+        pass
+    class type inspect CLASS-SELF-TO-ZONE1-INSPECT
+        inspect 
+    class class-default 
+        pass 
+
+policy-map type inspect POLICY-SELF-TO-ZONE2
+    class type inspect CLASS-SELF-TO-ZONE2-PASS
+        pass
+    class type inspect CLASS-SELF-TO-ZONE2-INSPECT
+        inspect 
+    class class-default 
+        pass 
+
+policy-map type inspect POLICY-SELF-TO-SECURITYZONE
+    class type inspect CLASS-SELF-TO-SECURITYZONE-PASS
+        pass
+    class type inspect CLASS-SELF-TO-SECURITYZONE-INSPECT
+        inspect 
+    class type inspect CLASS-SELF-TO-SECURITYZONE-DROP
+        drop log
+    class class-default
+        pass 
+
+
+zone-pair security OUTSIDE-TO-SELF source OUTSIDE destination self 
+    service-policy type inspect POLICY-OUTSIDE-TO-SELF
+
+zone-pair security SELF-TO-SECURITYZONE source self destination SECURITYZONE
+    service-policy type inspect POLICY-SELF-TO-SECURITYZONE
+
+zone-pair security SELF-TO-ZONE1 source self destination ZONE1  
+    service-policy type inspect POLICY-SELF-TO-ZONE1
+
+zone-pair security SELF-TO-ZONE2 source self destination ZONE2 
+    service-policy type inspect POLICY-SELF-TO-ZONE2
+
+
+
+interface GigabitEthernet1
+ ip address 192.168.4.1 255.255.255.0
+ ip nat inside
+ zone-member security ZONE1
+ negotiation auto
+ no mop enabled
+ no mop sysid
+ no shut 
+!         
+interface GigabitEthernet2
+ ip address 192.168.2.1 255.255.255.0
+ zone-member security SECURITYZONE
+ negotiation auto
+ no mop enabled
+ no mop sysid
+ no shut
+!         
+interface GigabitEthernet3
+ ip address 192.168.3.1 255.255.255.0
+ zone-member security ZONE2
+ negotiation auto
+ no mop enabled
+ no mop sysid
+ no shut
+!         
+interface GigabitEthernet4
+ ip address dhcp
+ zone-member security OUTSIDE
+ negotiation auto
+ no mop enabled
+ no mop sysid
+ no shut 

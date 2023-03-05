@@ -36,10 +36,10 @@ links:
     label: csr1000v-0-GigabitEthernet4<->ext-conn-0-port
   - id: l5
     n1: n6
-    n2: n2
+    n2: n1
     i1: i0
     i2: i2
-    label: ubuntu-1-ens2<->iosvl2-0-GigabitEthernet0/1
+    label: ubuntu-1-ens2<->iosvl2-2-GigabitEthernet0/1
 nodes:
   - boot_disk_size: 0
     configuration: |-
@@ -47,7 +47,7 @@ nodes:
 
       Current configuration : 4024 bytes
       !
-      ! Last configuration change at 17:15:07 UTC Sat Mar 4 2023 by cisco
+      ! Last configuration change at 22:11:28 UTC Sun Mar 5 2023 by cisco
       !
       version 15.2
       service timestamps debug datetime msec
@@ -248,7 +248,7 @@ nodes:
 
       Current configuration : 3959 bytes
       !
-      ! Last configuration change at 17:16:18 UTC Sat Mar 4 2023 by cisco
+      ! Last configuration change at 22:12:16 UTC Sun Mar 5 2023 by cisco
       !
       version 15.2
       service timestamps debug datetime msec
@@ -441,7 +441,7 @@ nodes:
 
       Current configuration : 4824 bytes
       !
-      ! Last configuration change at 17:14:38 UTC Sat Mar 4 2023 by admin1
+      ! Last configuration change at 22:11:39 UTC Sun Mar 5 2023 by admin1
       !
       version 15.2
       service timestamps debug datetime msec
@@ -656,7 +656,7 @@ nodes:
 
       Current configuration : 3962 bytes
       !
-      ! Last configuration change at 17:16:43 UTC Sat Mar 4 2023 by cisco
+      ! Last configuration change at 22:12:16 UTC Sun Mar 5 2023 by cisco
       !
       version 15.2
       service timestamps debug datetime msec
@@ -862,8 +862,8 @@ nodes:
         slot: 0
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 7393 bytes\n\
-      !\n! Last configuration change at 17:16:01 UTC Sat Mar 4 2023 by cisco\n!\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 11206 bytes\n\
+      !\n! Last configuration change at 22:12:39 UTC Sun Mar 5 2023 by cisco\n!\n\
       version 17.3\nservice timestamps debug datetime msec\nservice timestamps log\
       \ datetime msec\nservice call-home\nplatform qfp utilization monitor load 80\n\
       platform punt-keepalive disable-kernel-core\nplatform console serial\n!\nhostname\
@@ -871,18 +871,18 @@ nodes:
       \ new-model\n!\n!\naaa group server tacacs+ tacacsgui\n server name tacacsgui\n\
       !\naaa authentication login default group tacacsgui local\naaa authentication\
       \ enable default group tacasgui enable\naaa authorization config-commands\n\
-      aaa authorization exec default none\naaa authorization commands 0 default group\
-      \ tacacsgui if-authenticated\naaa authorization commands 1 default group tacacsgui\
-      \ if-authenticated\naaa authorization commands 15 default group tacacsgui if-authenticated\n\
-      aaa accounting exec default start-stop group tacasgui\naaa accounting commands\
-      \ 0 default start-stop group tacacsgui\naaa accounting commands 1 default start-stop\
-      \ group tacacsgui\naaa accounting commands 15 default start-stop group tacacsgui\n\
-      !\n!\n!\n!\n!\n!\naaa session-id common\n!\n!\n!\n!\n!\n!\n!\nip domain name\
-      \ R1\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n!\nsubscriber templating\n\
-      !\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n!\n!\n!\n!\n!\n!\n!\n\
-      !\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n\
-      \ revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-1146578515\n\
-      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1146578515\n\
+      aaa authorization exec default if-authenticated\naaa authorization commands\
+      \ 0 default group tacacsgui if-authenticated\naaa authorization commands 1 default\
+      \ group tacacsgui if-authenticated\naaa authorization commands 15 default group\
+      \ tacacsgui if-authenticated\naaa accounting exec default start-stop group tacasgui\n\
+      aaa accounting commands 0 default start-stop group tacacsgui\naaa accounting\
+      \ commands 1 default start-stop group tacacsgui\naaa accounting commands 15\
+      \ default start-stop group tacacsgui\n!\n!\n!\n!\n!\n!\naaa session-id common\n\
+      !\n!\n!\n!\n!\n!\n!\nip domain name R1\n!\n!\n!\nlogin on-success log\n!\n!\n\
+      !\n!\n!\n!\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name\
+      \ authenticated\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-1146578515\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1146578515\n\
       \ revocation-check none\n rsakeypair TP-self-signed-1146578515\n!\n!\ncrypto\
       \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
       \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
@@ -937,25 +937,73 @@ nodes:
       \  FA97ABEF 2435B04D 5AD5A58E 816938F6 5E5757B7 A1833454 0695BF31 0634C475\n\
       \  5D5BD0AC 439ADFCD 9C9A8BA0 B31B6D94 2E159B61 39E5DAB1 9628442B 759A0485\n\
       \  7FB7B149 653E611E A0B6DC2B F5263E60 B61EBB11\n  \tquit\n!\nlicense udi pid\
-      \ CSR1000V sn 9CX8MQPVXDJ\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \ CSR1000V sn 96WB5MA3EYJ\ndiagnostic bootup level minimal\nmemory free low-watermark\
       \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\nusername cisco secret\
       \ 8 $8$tLpXHJcbsyiwDv$06CcBLz./CDlK4.Y7ragO0EPWsG8sY9676z2Mha0En.\n!\nredundancy\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
-      interface GigabitEthernet1\n ip address 192.168.4.1 255.255.255.0\n ip nat inside\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n\
-      \ ip address 192.168.2.1 255.255.255.0\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet3\n ip address 192.168.3.1 255.255.255.0\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n\
-      \ ip address dhcp\n negotiation auto\n no mop enabled\n no mop sysid\n!\nip\
-      \ forward-protocol nd\nno ip http server\nip http secure-server\n!\nip nat pool\
-      \ pool1 192.168.50.40 192.168.50.45 netmask 255.255.255.0\nip nat pool pool2\
-      \ 192.168.5.1 192.168.5.3 netmask 255.255.255.0\nip nat inside source list nat1\
-      \ pool pool1 overload\nip nat outside source list nat2 pool pool2\nip tacacs\
-      \ source-interface GigabitEthernet4\n!\nip access-list extended nat1\n 10 permit\
-      \ ip 192.168.0.0 0.0.7.255 any\nip access-list extended nat2\n 10 permit ip\
-      \ 192.168.50.0 0.0.0.255 any\n!\n!\n!\n!\ntacacs server tacacsgui\n address\
-      \ ipv4 192.168.50.227\n key 3q2w1e4r5t7u8i9\n!\n!\n!\n!\ncontrol-plane\n!\n\
-      !\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n privilege level 15\n logging\
+      !\n!\n!\n!\n!\n!\n!\n!\nclass-map type inspect match-any CLASS-OUTSIDE-TO-SELF-PASS\n\
+      \ match access-group name ACL-IPSEC\n match access-group name ACL-PING-TRACEROUTE\n\
+      \ match access-group name ACL-DHCP\n match access-group name ACL-TACACS\n match\
+      \ access-group name ACL-WEB\n match access-group name ACL-SSH\n match access-group\
+      \ name ACL-YOUTUBE\nclass-map type inspect match-any CLASS-SELF-TO-SECURITYZONE-INSPECT\n\
+      \ match access-group name ACL-IPSEC\n match access-group name ACL-PING-TRACEROUTE\n\
+      \ match access-group name ACL-DHCP\n match access-group name ACL-TACACS\n match\
+      \ access-group name ACL-WEB\n match access-group name ACL-SSH\nclass-map type\
+      \ inspect match-any CLASS-SELF-TO-ZONE1-INSPECT\n match access-group name ACL-WEB\n\
+      \ match access-group name ACL-SSH\nclass-map type inspect match-any CLASS-SELF-TO-ZONE2-INSPECT\n\
+      \ match access-group name ACL-WEB\n match access-group name ACL-SSH\nclass-map\
+      \ type inspect match-any CLASS-SELF-TO-SECURITYZONE-DROP\n match access-group\
+      \ name ACL-YOUTUBE\nclass-map type inspect match-any CLASS-SELF-TO-ZONE2-PASS\n\
+      \ match access-group name ACL-IPSEC\n match access-group name ACL-PING-TRACEROUTE\n\
+      \ match access-group name ACL-DHCP\n match access-group name ACL-TACACS\n match\
+      \ access-group name ACL-YOUTUBE\nclass-map type inspect match-any CLASS-SELF-TO-ZONE1-PASS\n\
+      \ match access-group name ACL-IPSEC\n match access-group name ACL-PING-TRACEROUTE\n\
+      \ match access-group name ACL-DHCP\n match access-group name ACL-TACACS\n match\
+      \ access-group name ACL-YOUTUBE\n!\npolicy-map type inspect POLICY-OUTSIDE-TO-SELF\n\
+      \ class type inspect CLASS-OUTSIDE-TO-SELF-PASS\n  inspect\n class class-default\n\
+      \  drop\npolicy-map type inspect POLICY-SELF-TO-ZONE1\n class type inspect CLASS-SELF-TO-ZONE1-PASS\n\
+      \  inspect\n class type inspect CLASS-SELF-TO-ZONE1-INSPECT\n  inspect\n class\
+      \ class-default\n  drop\npolicy-map type inspect POLICY-SELF-TO-ZONE2\n class\
+      \ type inspect CLASS-SELF-TO-ZONE2-PASS\n  inspect\n class type inspect CLASS-SELF-TO-ZONE2-INSPECT\n\
+      \  inspect\n class class-default\n  drop\npolicy-map type inspect POLICY-SELF-TO-SECURITYZONE\n\
+      \ class type inspect CLASS-SELF-TO-SECURITYZONE-INSPECT\n  inspect\n class type\
+      \ inspect CLASS-SELF-TO-SECURITYZONE-DROP\n  drop log\n class class-default\n\
+      \  drop\n!\nzone security OUTSIDE\n description internet facing zone.\nzone\
+      \ security SECURITYZONE\n description deny youtube, inspect everything else.\n\
+      zone security ZONE1\n description pass everything except webtraffic which will\
+      \ be inspected.\nzone security ZONE2\n description pass everythign except webtraffic\
+      \ which will be inspected.\nzone-pair security OUTSIDE-TO-SELF source self destination\
+      \ OUTSIDE\n service-policy type inspect POLICY-OUTSIDE-TO-SELF\nzone-pair security\
+      \ SELF-TO-SECURITYZONE source SECURITYZONE destination self\n service-policy\
+      \ type inspect POLICY-SELF-TO-SECURITYZONE\nzone-pair security SELF-TO-ZONE1\
+      \ source ZONE1 destination self\n service-policy type inspect POLICY-SELF-TO-ZONE1\n\
+      zone-pair security SELF-TO-ZONE2 source ZONE2 destination self\n service-policy\
+      \ type inspect POLICY-SELF-TO-ZONE2\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
+      !\n!\n!\n!\n!\ninterface GigabitEthernet1\n ip address 192.168.4.1 255.255.255.0\n\
+      \ ip nat inside\n zone-member security ZONE1\n negotiation auto\n no mop enabled\n\
+      \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 192.168.2.1 255.255.255.0\n\
+      \ zone-member security SECURITYZONE\n negotiation auto\n no mop enabled\n no\
+      \ mop sysid\n!\ninterface GigabitEthernet3\n ip address 192.168.3.1 255.255.255.0\n\
+      \ zone-member security ZONE2\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n ip address dhcp\n zone-member security OUTSIDE\n\
+      \ negotiation auto\n no mop enabled\n no mop sysid\n!\nip forward-protocol nd\n\
+      no ip http server\nip http secure-server\n!\nip nat pool pool1 192.168.50.40\
+      \ 192.168.50.45 netmask 255.255.255.0\nip nat pool pool2 192.168.5.1 192.168.5.3\
+      \ netmask 255.255.255.0\nip nat inside source list nat1 pool pool1 overload\n\
+      ip nat outside source list nat2 pool pool2\nip tacacs source-interface GigabitEthernet4\n\
+      !\nip access-list extended ACL-DHCP\n 10 permit udp any eq bootps any eq bootps\n\
+      \ 20 permit udp any eq bootpc any eq bootpc\nip access-list extended ACL-IPSEC\n\
+      \ 10 permit udp any any eq non500-isakmp\n 20 permit udp any any eq isakmp\n\
+      ip access-list extended ACL-PING-TRACEROUTE\n 10 permit icmp any any echo\n\
+      \ 20 permit icmp any any echo-reply\n 30 permit icmp any any ttl-exceeded\n\
+      \ 40 permit icmp any any port-unreachable\n 50 permit udp any any range 33434\
+      \ 33463 ttl eq 1\nip access-list extended ACL-SSH\n 10 permit tcp any any eq\
+      \ 22\n 20 permit tcp any eq 22 any\nip access-list extended ACL-TACACS\n 10\
+      \ permit tcp any any eq tacacs\nip access-list extended ACL-WEB\n 10 permit\
+      \ tcp any any eq www\nip access-list extended ACL-YOUTUBE\nip access-list extended\
+      \ nat1\n 10 permit ip 192.168.0.0 0.0.7.255 any\nip access-list extended nat2\n\
+      \ 10 permit ip 192.168.50.0 0.0.0.255 any\n!\n!\n!\n!\ntacacs server tacacsgui\n\
+      \ address ipv4 192.168.50.227\n key 3q2w1e4r5t7u8i9\n!\n!\n!\n!\ncontrol-plane\n\
+      !\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n privilege level 15\n logging\
       \ synchronous\n stopbits 1\nline vty 0 4\n transport input ssh\nline vty 5 15\n\
       \ transport input ssh\n!\ncall-home\n ! If contact email address in call-home\
       \ is configured as sch-smart-licensing@cisco.com\n ! the email address configured\
@@ -1016,8 +1064,8 @@ nodes:
     node_definition: ubuntu
     ram: 2048
     tags: []
-    x: 83
-    y: 224
+    x: 1157
+    y: 322
     interfaces:
       - id: i0
         label: ens2
