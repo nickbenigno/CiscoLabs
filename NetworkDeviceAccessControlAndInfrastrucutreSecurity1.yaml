@@ -862,8 +862,8 @@ nodes:
         slot: 0
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 11206 bytes\n\
-      !\n! Last configuration change at 22:12:39 UTC Sun Mar 5 2023 by cisco\n!\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 11246 bytes\n\
+      !\n! Last configuration change at 01:36:35 UTC Mon Mar 6 2023 by cisco\n!\n\
       version 17.3\nservice timestamps debug datetime msec\nservice timestamps log\
       \ datetime msec\nservice call-home\nplatform qfp utilization monitor load 80\n\
       platform punt-keepalive disable-kernel-core\nplatform console serial\n!\nhostname\
@@ -937,7 +937,7 @@ nodes:
       \  FA97ABEF 2435B04D 5AD5A58E 816938F6 5E5757B7 A1833454 0695BF31 0634C475\n\
       \  5D5BD0AC 439ADFCD 9C9A8BA0 B31B6D94 2E159B61 39E5DAB1 9628442B 759A0485\n\
       \  7FB7B149 653E611E A0B6DC2B F5263E60 B61EBB11\n  \tquit\n!\nlicense udi pid\
-      \ CSR1000V sn 96WB5MA3EYJ\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \ CSR1000V sn 90FTXWKJ6KW\ndiagnostic bootup level minimal\nmemory free low-watermark\
       \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\nusername cisco secret\
       \ 8 $8$tLpXHJcbsyiwDv$06CcBLz./CDlK4.Y7ragO0EPWsG8sY9676z2Mha0En.\n!\nredundancy\n\
       !\n!\n!\n!\n!\n!\n!\n!\nclass-map type inspect match-any CLASS-OUTSIDE-TO-SELF-PASS\n\
@@ -961,9 +961,9 @@ nodes:
       \ access-group name ACL-YOUTUBE\n!\npolicy-map type inspect POLICY-OUTSIDE-TO-SELF\n\
       \ class type inspect CLASS-OUTSIDE-TO-SELF-PASS\n  inspect\n class class-default\n\
       \  drop\npolicy-map type inspect POLICY-SELF-TO-ZONE1\n class type inspect CLASS-SELF-TO-ZONE1-PASS\n\
-      \  inspect\n class type inspect CLASS-SELF-TO-ZONE1-INSPECT\n  inspect\n class\
+      \  pass\n class type inspect CLASS-SELF-TO-ZONE1-INSPECT\n  inspect\n class\
       \ class-default\n  drop\npolicy-map type inspect POLICY-SELF-TO-ZONE2\n class\
-      \ type inspect CLASS-SELF-TO-ZONE2-PASS\n  inspect\n class type inspect CLASS-SELF-TO-ZONE2-INSPECT\n\
+      \ type inspect CLASS-SELF-TO-ZONE2-PASS\n  pass\n class type inspect CLASS-SELF-TO-ZONE2-INSPECT\n\
       \  inspect\n class class-default\n  drop\npolicy-map type inspect POLICY-SELF-TO-SECURITYZONE\n\
       \ class type inspect CLASS-SELF-TO-SECURITYZONE-INSPECT\n  inspect\n class type\
       \ inspect CLASS-SELF-TO-SECURITYZONE-DROP\n  drop log\n class class-default\n\
@@ -973,37 +973,38 @@ nodes:
       \ be inspected.\nzone security ZONE2\n description pass everythign except webtraffic\
       \ which will be inspected.\nzone-pair security OUTSIDE-TO-SELF source self destination\
       \ OUTSIDE\n service-policy type inspect POLICY-OUTSIDE-TO-SELF\nzone-pair security\
-      \ SELF-TO-SECURITYZONE source SECURITYZONE destination self\n service-policy\
+      \ SELF-TO-SECURITYZONE source self destination SECURITYZONE\n service-policy\
       \ type inspect POLICY-SELF-TO-SECURITYZONE\nzone-pair security SELF-TO-ZONE1\
-      \ source ZONE1 destination self\n service-policy type inspect POLICY-SELF-TO-ZONE1\n\
-      zone-pair security SELF-TO-ZONE2 source ZONE2 destination self\n service-policy\
+      \ source self destination ZONE1\n service-policy type inspect POLICY-SELF-TO-ZONE1\n\
+      zone-pair security SELF-TO-ZONE2 source self destination ZONE2\n service-policy\
       \ type inspect POLICY-SELF-TO-ZONE2\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
       !\n!\n!\n!\n!\ninterface GigabitEthernet1\n ip address 192.168.4.1 255.255.255.0\n\
       \ ip nat inside\n zone-member security ZONE1\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 192.168.2.1 255.255.255.0\n\
-      \ zone-member security SECURITYZONE\n negotiation auto\n no mop enabled\n no\
-      \ mop sysid\n!\ninterface GigabitEthernet3\n ip address 192.168.3.1 255.255.255.0\n\
-      \ zone-member security ZONE2\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet4\n ip address dhcp\n zone-member security OUTSIDE\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\nip forward-protocol nd\n\
-      no ip http server\nip http secure-server\n!\nip nat pool pool1 192.168.50.40\
-      \ 192.168.50.45 netmask 255.255.255.0\nip nat pool pool2 192.168.5.1 192.168.5.3\
-      \ netmask 255.255.255.0\nip nat inside source list nat1 pool pool1 overload\n\
-      ip nat outside source list nat2 pool pool2\nip tacacs source-interface GigabitEthernet4\n\
-      !\nip access-list extended ACL-DHCP\n 10 permit udp any eq bootps any eq bootps\n\
-      \ 20 permit udp any eq bootpc any eq bootpc\nip access-list extended ACL-IPSEC\n\
-      \ 10 permit udp any any eq non500-isakmp\n 20 permit udp any any eq isakmp\n\
-      ip access-list extended ACL-PING-TRACEROUTE\n 10 permit icmp any any echo\n\
-      \ 20 permit icmp any any echo-reply\n 30 permit icmp any any ttl-exceeded\n\
-      \ 40 permit icmp any any port-unreachable\n 50 permit udp any any range 33434\
-      \ 33463 ttl eq 1\nip access-list extended ACL-SSH\n 10 permit tcp any any eq\
-      \ 22\n 20 permit tcp any eq 22 any\nip access-list extended ACL-TACACS\n 10\
-      \ permit tcp any any eq tacacs\nip access-list extended ACL-WEB\n 10 permit\
-      \ tcp any any eq www\nip access-list extended ACL-YOUTUBE\nip access-list extended\
-      \ nat1\n 10 permit ip 192.168.0.0 0.0.7.255 any\nip access-list extended nat2\n\
-      \ 10 permit ip 192.168.50.0 0.0.0.255 any\n!\n!\n!\n!\ntacacs server tacacsgui\n\
-      \ address ipv4 192.168.50.227\n key 3q2w1e4r5t7u8i9\n!\n!\n!\n!\ncontrol-plane\n\
-      !\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n privilege level 15\n logging\
+      \ ip nat outside\n zone-member security SECURITYZONE\n negotiation auto\n no\
+      \ mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n ip address 192.168.3.1\
+      \ 255.255.255.0\n ip nat inside\n zone-member security ZONE2\n negotiation auto\n\
+      \ no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n ip address\
+      \ dhcp\n ip nat inside\n zone-member security OUTSIDE\n negotiation auto\n no\
+      \ mop enabled\n no mop sysid\n!\nip forward-protocol nd\nno ip http server\n\
+      ip http secure-server\n!\nip nat pool pool1 192.168.50.40 192.168.50.45 netmask\
+      \ 255.255.255.0\nip nat pool pool2 192.168.5.1 192.168.5.3 netmask 255.255.255.0\n\
+      ip nat inside source list nat1 pool pool1 overload\nip nat outside source list\
+      \ nat2 pool pool2\nip tacacs source-interface GigabitEthernet4\n!\nip access-list\
+      \ extended ACL-DHCP\n 10 permit udp any eq bootps any eq bootps\n 20 permit\
+      \ udp any eq bootpc any eq bootpc\nip access-list extended ACL-IPSEC\n 10 permit\
+      \ udp any any eq non500-isakmp\n 20 permit udp any any eq isakmp\nip access-list\
+      \ extended ACL-PING-TRACEROUTE\n 10 permit icmp any any echo\n 20 permit icmp\
+      \ any any echo-reply\n 30 permit icmp any any ttl-exceeded\n 40 permit icmp\
+      \ any any port-unreachable\n 50 permit udp any any range 33434 33463 ttl eq\
+      \ 1\nip access-list extended ACL-SSH\n 10 permit tcp any any eq 22\n 20 permit\
+      \ tcp any eq 22 any\nip access-list extended ACL-TACACS\n 10 permit tcp any\
+      \ any eq tacacs\nip access-list extended ACL-WEB\n 10 permit tcp any any eq\
+      \ www\nip access-list extended ACL-YOUTUBE\nip access-list extended nat1\n 10\
+      \ permit ip 192.168.0.0 0.0.7.255 any\nip access-list extended nat2\n 10 permit\
+      \ ip 192.168.50.0 0.0.0.255 any\n!\n!\n!\n!\ntacacs server tacacsgui\n address\
+      \ ipv4 192.168.50.227\n key 3q2w1e4r5t7u8i9\n!\n!\n!\n!\ncontrol-plane\n!\n\
+      !\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n privilege level 15\n logging\
       \ synchronous\n stopbits 1\nline vty 0 4\n transport input ssh\nline vty 5 15\n\
       \ transport input ssh\n!\ncall-home\n ! If contact email address in call-home\
       \ is configured as sch-smart-licensing@cisco.com\n ! the email address configured\
