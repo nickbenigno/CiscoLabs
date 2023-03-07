@@ -1,4 +1,4 @@
-ab:
+lab:
   description: ''
   notes: ''
   title: Lab at Tue 14:09 PM
@@ -45,11 +45,14 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 4024 bytes
+      Current configuration : 4197 bytes
       !
-      ! Last configuration change at 22:11:28 UTC Sun Mar 5 2023 by cisco
+      ! Last configuration change at 17:20:12 UTC Tue Mar 7 2023 by cisco
       !
       version 15.2
+      no service pad
+      service tcp-keepalives-in
+      service tcp-keepalives-out
       service timestamps debug datetime msec
       service timestamps log datetime msec
       no service password-encryption
@@ -124,11 +127,15 @@ nodes:
       !
       interface GigabitEthernet0/0
        negotiation auto
-       no cdp tlv app
+       no lldp transmit
+       no lldp receive
+       no cdp enable
       !
       interface GigabitEthernet0/1
        negotiation auto
-       no cdp tlv app
+       no lldp transmit
+       no lldp receive
+       no cdp enable
       !
       interface GigabitEthernet0/2
        negotiation auto
@@ -144,6 +151,8 @@ nodes:
       !
       interface Vlan1
        ip address 192.168.4.51 255.255.255.0
+       no ip redirects
+       no ip proxy-arp
       !
       ip forward-protocol nd
       !
@@ -168,7 +177,7 @@ nodes:
       !
       control-plane
       !
-      banner exec ^CCC
+      banner exec ^CCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -177,7 +186,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner incoming ^CCC
+      banner incoming ^CCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -186,7 +195,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner login ^CCC
+      banner login ^CCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -216,8 +225,8 @@ nodes:
     node_definition: iosvl2
     ram: 2000
     tags: []
-    x: 451
-    y: 256
+    x: 455
+    y: 261
     interfaces:
       - id: i0
         label: Loopback0
@@ -246,11 +255,14 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 3959 bytes
+      Current configuration : 4132 bytes
       !
-      ! Last configuration change at 22:12:16 UTC Sun Mar 5 2023 by cisco
+      ! Last configuration change at 17:32:38 UTC Tue Mar 7 2023 by cisco
       !
       version 15.2
+      no service pad
+      service tcp-keepalives-in
+      service tcp-keepalives-out
       service timestamps debug datetime msec
       service timestamps log datetime msec
       no service password-encryption
@@ -325,11 +337,15 @@ nodes:
       !
       interface GigabitEthernet0/0
        negotiation auto
-       no cdp tlv app
+       no lldp transmit
+       no lldp receive
+       no cdp enable
       !
       interface GigabitEthernet0/1
        negotiation auto
-       no cdp tlv app
+       no lldp transmit
+       no lldp receive
+       no cdp enable
       !
       interface GigabitEthernet0/2
        negotiation auto
@@ -341,6 +357,8 @@ nodes:
       !
       interface Vlan1
        ip address 192.168.2.50 255.255.255.0
+       no ip redirects
+       no ip proxy-arp
       !
       ip forward-protocol nd
       !
@@ -365,7 +383,7 @@ nodes:
       !
       control-plane
       !
-      banner exec ^CCC
+      banner exec ^CCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -374,7 +392,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner incoming ^CCC
+      banner incoming ^CCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -383,7 +401,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner login ^CCC
+      banner login ^CCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -439,11 +457,14 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 4824 bytes
+      Current configuration : 4791 bytes
       !
-      ! Last configuration change at 22:11:39 UTC Sun Mar 5 2023 by admin1
+      ! Last configuration change at 17:20:19 UTC Tue Mar 7 2023 by cisco
       !
       version 15.2
+      no service pad
+      service tcp-keepalives-in
+      service tcp-keepalives-out
       service timestamps debug datetime msec
       service timestamps log datetime msec
       no service password-encryption
@@ -522,7 +543,9 @@ nodes:
       !
       interface GigabitEthernet0/0
        negotiation auto
-       no cdp tlv app
+       no lldp transmit
+       no lldp receive
+       no cdp enable
       !
       interface GigabitEthernet0/1
        negotiation auto
@@ -538,6 +561,8 @@ nodes:
       !
       interface Vlan1
        ip address 192.168.4.50 255.255.255.0
+       no ip redirects
+       no ip proxy-arp
       !
       ip forward-protocol nd
       !
@@ -570,7 +595,7 @@ nodes:
       privilege configure level 5 interface
       privilege exec level 2 configure terminal
       privilege exec level 2 configure
-      banner exec ^CCCCC
+      banner exec ^CCCCCC
       IOSv - Cisco Systems Confidential -
 
 
@@ -582,7 +607,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner incoming ^CCCCC
+      banner incoming ^CCCCCC
       IOSv - Cisco Systems Confidential -
 
 
@@ -594,7 +619,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner login ^CCCCC
+      banner login ^CCCCCC
       IOSv - Cisco Systems Confidential -
 
 
@@ -654,11 +679,14 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 3962 bytes
+      Current configuration : 4101 bytes
       !
-      ! Last configuration change at 22:12:16 UTC Sun Mar 5 2023 by cisco
+      ! Last configuration change at 17:20:07 UTC Tue Mar 7 2023 by cisco
       !
       version 15.2
+      no service pad
+      service tcp-keepalives-in
+      service tcp-keepalives-out
       service timestamps debug datetime msec
       service timestamps log datetime msec
       no service password-encryption
@@ -733,7 +761,9 @@ nodes:
       !
       interface GigabitEthernet0/0
        negotiation auto
-       no cdp tlv app
+       no lldp transmit
+       no lldp receive
+       no cdp enable
       !
       interface GigabitEthernet0/1
        negotiation auto
@@ -749,6 +779,8 @@ nodes:
       !
       interface Vlan1
        ip address 192.168.3.50 255.255.255.0
+       no ip redirects
+       no ip proxy-arp
       !
       ip forward-protocol nd
       !
@@ -773,7 +805,7 @@ nodes:
       !
       control-plane
       !
-      banner exec ^CCCC
+      banner exec ^CCCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -782,7 +814,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner incoming ^CCCC
+      banner incoming ^CCCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
@@ -791,7 +823,7 @@ nodes:
 
       By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
       ^C
-      banner login ^CCCC
+      banner login ^CCCCC
       IOSv - Cisco Systems Confidential -
 
       Supplemental End User License Restrictions
