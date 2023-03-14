@@ -89,7 +89,7 @@ nodes:
 
       Current configuration : 2669 bytes
       !
-      ! Last configuration change at 19:09:55 UTC Tue Mar 14 2023
+      ! Last configuration change at 22:20:14 UTC Tue Mar 14 2023
       !
       version 15.2
       service timestamps debug datetime msec
@@ -231,17 +231,17 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 7142 bytes\n\
-      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 7467 bytes\n\
+      !\n! Last configuration change at 22:23:23 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R1\n!\nboot-start-marker\n\
       boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
-      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
-      !\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n\
-      \ enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-1644687164\n\
-      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1644687164\n\
+      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\nipv6 unicast-routing\n\
+      !\n!\n!\n!\n!\n!\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name\
+      \ authenticated\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-1644687164\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1644687164\n\
       \ revocation-check none\n rsakeypair TP-self-signed-1644687164\n!\n!\ncrypto\
       \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
       \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
@@ -301,13 +301,16 @@ nodes:
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
       interface Loopback0\n ip address 1.1.1.1 255.255.255.255\n!\ninterface GigabitEthernet1\n\
       \ ip address 172.17.0.1 255.255.255.0\n ip nat inside\n ip ospf priority 2\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n\
-      \ ip address 172.16.0.1 255.255.255.0\n ip nat inside\n ip ospf network point-to-point\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
-      \ ip address 10.0.0.1 255.255.255.0\n ip nat inside\n negotiation auto\n no\
-      \ mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n ip address dhcp\n\
-      \ ip nat outside\n negotiation auto\n no mop enabled\n no mop sysid\n!\n!\n\
-      router eigrp 65001\n network 1.1.1.1 0.0.0.0\n network 10.0.0.0 0.0.0.255\n\
+      \ negotiation auto\n ipv6 address 2001:0:1::1/64\n ipv6 ospf 2 area 1\n ipv6\
+      \ ospf priority 2\n ospfv3 priority 2\n no mop enabled\n no mop sysid\n!\ninterface\
+      \ GigabitEthernet2\n ip address 172.16.0.1 255.255.255.0\n ip nat inside\n ip\
+      \ ospf network point-to-point\n negotiation auto\n ipv6 address 2001::1/64\n\
+      \ ipv6 ospf 2 area 0\n ipv6 ospf priority 2\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet3\n ip address 10.0.0.1 255.255.255.0\n ip nat inside\n\
+      \ negotiation auto\n ipv6 address 2001:BD13:C341:1::1/64\n ipv6 eigrp 65001\n\
+      \ no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n ip address\
+      \ dhcp\n ip nat outside\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\n!\nrouter eigrp 65001\n network 1.1.1.1 0.0.0.0\n network 10.0.0.0 0.0.0.255\n\
       !\nrouter ospf 1\n priority 102\n auto-cost reference-bandwidth 1000\n area\
       \ 0 filter-list prefix NO_LOOP_AREA1 in\n area 1 range 172.17.0.0 255.255.252.0\
       \ cost 22\n summary-address 10.0.0.0 255.255.252.0\n summary-address 10.0.5.0\
@@ -319,11 +322,12 @@ nodes:
       \ GigabitEthernet4 overload\n!\nip access-list standard NAT1\n 10 permit 172.16.0.0\
       \ 0.0.255.255\n!\n!\n!\nip prefix-list NO_LOOP_AREA1 seq 10 deny 172.17.5.1/32\n\
       ip prefix-list NO_LOOP_AREA1 seq 20 deny 172.17.6.1/32\nip prefix-list NO_LOOP_AREA1\
-      \ seq 30 permit 0.0.0.0/0 le 32\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n\
-      !\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline\
-      \ vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n transport\
-      \ input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If\
-      \ contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ seq 30 permit 0.0.0.0/0 le 32\nipv6 router eigrp 65001\n!\nipv6 router ospf\
+      \ 2\n router-id 1.1.1.1\n redistribute eigrp 65001\n!\n!\n!\n!\n!\n!\ncontrol-plane\n\
+      !\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits\
+      \ 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n\
+      \ transport input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n\
+      \ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
       \ ! the email address configured in Cisco Smart License Portal will be used\
       \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
       \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
@@ -360,17 +364,17 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6586 bytes\n\
-      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6747 bytes\n\
+      !\n! Last configuration change at 22:23:24 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R2\n!\nboot-start-marker\n\
       boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
-      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
-      !\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n\
-      \ enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-3045570968\n\
-      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-3045570968\n\
+      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\nipv6 unicast-routing\n\
+      !\n!\n!\n!\n!\n!\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name\
+      \ authenticated\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-3045570968\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-3045570968\n\
       \ revocation-check none\n rsakeypair TP-self-signed-3045570968\n!\n!\ncrypto\
       \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
       \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
@@ -430,24 +434,25 @@ nodes:
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
       interface Loopback0\n ip address 2.2.2.2 255.255.255.255\n!\ninterface Loopback1\n\
       \ ip address 172.17.5.1 255.255.255.0\n!\ninterface GigabitEthernet1\n ip address\
-      \ 172.17.0.2 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet2\n ip address 172.17.1.1 255.255.255.0\n negotiation\
-      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n no ip\
-      \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
-      interface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no\
-      \ mop enabled\n no mop sysid\n!\nrouter ospf 1\n auto-cost reference-bandwidth\
+      \ 172.17.0.2 255.255.255.0\n negotiation auto\n ipv6 address 2001:0:1::2/64\n\
+      \ ipv6 ospf 2 area 1\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n\
+      \ ip address 172.17.1.1 255.255.255.0\n negotiation auto\n ipv6 address 2001:0:1:1::1/64\n\
+      \ ipv6 ospf 2 area 1\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
+      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no mop enabled\n no mop sysid\n!\nrouter ospf 1\n auto-cost reference-bandwidth\
       \ 1000\n network 2.2.2.2 0.0.0.0 area 1\n network 172.17.0.0 0.0.0.255 area\
       \ 1\n network 172.17.1.0 0.0.0.255 area 1\n network 172.17.5.0 0.0.0.255 area\
       \ 1\n distribute-list prefix NO_LOOP_ADJ_172.17 in\n!\nip forward-protocol nd\n\
       no ip http server\nip http secure-server\n!\n!\n!\n!\nip prefix-list NO_LOOP_ADJ_172.17\
       \ seq 10 deny 172.17.6.1/32\nip prefix-list NO_LOOP_ADJ_172.17 seq 20 permit\
-      \ 0.0.0.0/0 le 32\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con\
-      \ 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline vty 0\n login\n\
-      \ transport input ssh\nline vty 1\n login\n length 0\n transport input ssh\n\
-      line vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If contact email\
-      \ address in call-home is configured as sch-smart-licensing@cisco.com\n ! the\
-      \ email address configured in Cisco Smart License Portal will be used as contact\
-      \ email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ 0.0.0.0/0 le 32\nipv6 router ospf 2\n router-id 2.2.2.2\n!\n!\n!\n!\n!\n!\n\
+      control-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n\
+      \ stopbits 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n\
+      \ length 0\n transport input ssh\nline vty 2 4\n login\n transport input ssh\n\
+      !\ncall-home\n ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ ! the email address configured in Cisco Smart License Portal will be used\
+      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
       \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
       !\n!\n!\n!\nend"
     cpu_limit: 100
@@ -482,17 +487,17 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6528 bytes\n\
-      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6689 bytes\n\
+      !\n! Last configuration change at 22:23:24 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R3\n!\nboot-start-marker\n\
       boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
-      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
-      !\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n\
-      \ enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-1637509078\n\
-      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1637509078\n\
+      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\nipv6 unicast-routing\n\
+      !\n!\n!\n!\n!\n!\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name\
+      \ authenticated\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-1637509078\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1637509078\n\
       \ revocation-check none\n rsakeypair TP-self-signed-1637509078\n!\n!\ncrypto\
       \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
       \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
@@ -551,9 +556,10 @@ nodes:
       \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
       interface Loopback0\n ip address 172.17.6.1 255.255.255.0\n!\ninterface GigabitEthernet1\n\
-      \ ip address 172.17.0.3 255.255.255.0\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 172.17.2.1 255.255.255.0\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
+      \ ip address 172.17.0.3 255.255.255.0\n negotiation auto\n ipv6 address 2001:0:1::3/64\n\
+      \ ipv6 ospf 2 area 1\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n\
+      \ ip address 172.17.2.1 255.255.255.0\n negotiation auto\n ipv6 address 2001:0:1:2::1/64\n\
+      \ ipv6 ospf 2 area 1\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
       \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
       !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\nrouter ospf 1\n auto-cost reference-bandwidth\
@@ -562,13 +568,13 @@ nodes:
       \ 1\n distribute-list prefix NO_ADJ_LOOP_172.17 in\n!\nip forward-protocol nd\n\
       no ip http server\nip http secure-server\n!\n!\n!\n!\nip prefix-list NO_ADJ_LOOP_172.17\
       \ seq 10 deny 172.17.5.1/32\nip prefix-list NO_ADJ_LOOP_172.17 seq 20 permit\
-      \ 0.0.0.0/0 le 32\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con\
-      \ 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline vty 0\n login\n\
-      \ transport input ssh\nline vty 1\n login\n length 0\n transport input ssh\n\
-      line vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If contact email\
-      \ address in call-home is configured as sch-smart-licensing@cisco.com\n ! the\
-      \ email address configured in Cisco Smart License Portal will be used as contact\
-      \ email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ 0.0.0.0/0 le 32\nipv6 router ospf 2\n router-id 3.3.3.3\n!\n!\n!\n!\n!\n!\n\
+      control-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n\
+      \ stopbits 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n\
+      \ length 0\n transport input ssh\nline vty 2 4\n login\n transport input ssh\n\
+      !\ncall-home\n ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ ! the email address configured in Cisco Smart License Portal will be used\
+      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
       \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
       !\n!\n!\n!\nend"
     cpu_limit: 100
@@ -603,17 +609,17 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6631 bytes\n\
-      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6808 bytes\n\
+      !\n! Last configuration change at 22:23:24 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R4\n!\nboot-start-marker\n\
       boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
-      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
-      !\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n\
-      \ enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-2246351385\n\
-      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-2246351385\n\
+      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\nipv6 unicast-routing\n\
+      !\n!\n!\n!\n!\n!\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name\
+      \ authenticated\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-2246351385\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-2246351385\n\
       \ revocation-check none\n rsakeypair TP-self-signed-2246351385\n!\n!\ncrypto\
       \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
       \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
@@ -673,22 +679,24 @@ nodes:
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
       interface Loopback0\n ip address 4.4.4.4 255.255.255.255\n!\ninterface GigabitEthernet1\n\
       \ ip address 172.16.0.2 255.255.255.0\n ip ospf network point-to-point\n negotiation\
-      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n ip address\
-      \ 172.18.0.1 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet3\n no ip address\n shutdown\n negotiation auto\n\
-      \ no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n no ip address\n\
-      \ shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\nrouter ospf\
-      \ 1\n priority 101\n area 0 filter-list prefix NO_AREA_2_Loop in\n area 2 range\
-      \ 172.18.0.0 255.255.252.0 cost 22\n network 4.4.4.4 0.0.0.0 area 0\n network\
-      \ 172.16.0.0 0.0.0.255 area 0\n network 172.16.4.0 0.0.0.255 area 2\n network\
-      \ 172.18.0.0 0.0.0.255 area 2\n!\nip forward-protocol nd\nno ip http server\n\
-      ip http secure-server\n!\n!\n!\n!\nip prefix-list NO_AREA_2_Loop seq 10 deny\
-      \ 172.18.5.1/32\nip prefix-list NO_AREA_2_Loop seq 20 deny 172.18.6.1/32\nip\
-      \ prefix-list NO_AREA_2_Loop seq 30 permit 0.0.0.0/0 le 32\n!\n!\n!\n!\n!\n\
-      control-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n\
-      \ stopbits 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n\
-      \ length 0\n transport input ssh\nline vty 2 4\n login\n transport input ssh\n\
-      !\ncall-home\n ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ auto\n ipv6 address 2001::2/64\n ipv6 ospf 2 area 0\n no mop enabled\n no\
+      \ mop sysid\n!\ninterface GigabitEthernet2\n ip address 172.18.0.1 255.255.255.0\n\
+      \ negotiation auto\n ipv6 address 2001:0:2::1/64\n ipv6 ospf 2 area 2\n ipv6\
+      \ ospf priority 2\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
+      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no mop enabled\n no mop sysid\n!\nrouter ospf 1\n priority 101\n area 0 filter-list\
+      \ prefix NO_AREA_2_Loop in\n area 2 range 172.18.0.0 255.255.252.0 cost 22\n\
+      \ network 4.4.4.4 0.0.0.0 area 0\n network 172.16.0.0 0.0.0.255 area 0\n network\
+      \ 172.16.4.0 0.0.0.255 area 2\n network 172.18.0.0 0.0.0.255 area 2\n!\nip forward-protocol\
+      \ nd\nno ip http server\nip http secure-server\n!\n!\n!\n!\nip prefix-list NO_AREA_2_Loop\
+      \ seq 10 deny 172.18.5.1/32\nip prefix-list NO_AREA_2_Loop seq 20 deny 172.18.6.1/32\n\
+      ip prefix-list NO_AREA_2_Loop seq 30 permit 0.0.0.0/0 le 32\nipv6 router ospf\
+      \ 2\n router-id 4.4.4.4\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\n\
+      line con 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline vty 0\n\
+      \ login\n transport input ssh\nline vty 1\n login\n length 0\n transport input\
+      \ ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If contact\
+      \ email address in call-home is configured as sch-smart-licensing@cisco.com\n\
       \ ! the email address configured in Cisco Smart License Portal will be used\
       \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
       \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
@@ -730,7 +738,7 @@ nodes:
 
       Current configuration : 2669 bytes
       !
-      ! Last configuration change at 19:10:24 UTC Tue Mar 14 2023
+      ! Last configuration change at 22:20:44 UTC Tue Mar 14 2023
       !
       version 15.2
       service timestamps debug datetime msec
@@ -872,17 +880,17 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6550 bytes\n\
-      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6711 bytes\n\
+      !\n! Last configuration change at 22:23:24 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R6\n!\nboot-start-marker\n\
       boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
-      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
-      !\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n\
-      \ enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-3171021101\n\
-      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-3171021101\n\
+      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\nipv6 unicast-routing\n\
+      !\n!\n!\n!\n!\n!\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name\
+      \ authenticated\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-3171021101\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-3171021101\n\
       \ revocation-check none\n rsakeypair TP-self-signed-3171021101\n!\n!\ncrypto\
       \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
       \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
@@ -942,25 +950,27 @@ nodes:
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
       interface Loopback0\n ip address 6.6.6.6 255.255.255.255\n!\ninterface Loopback1\n\
       \ ip address 172.18.6.1 255.255.255.0\n!\ninterface GigabitEthernet1\n ip address\
-      \ 172.18.0.3 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet2\n ip address 172.18.1.1 255.255.255.0\n negotiation\
-      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n no ip\
-      \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
-      interface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no\
-      \ mop enabled\n no mop sysid\n!\nrouter ospf 1\n network 6.6.6.6 0.0.0.0 area\
-      \ 2\n network 172.18.0.0 0.0.0.255 area 2\n network 172.18.1.0 0.0.0.255 area\
-      \ 2\n network 172.18.6.0 0.0.0.255 area 2\n distribute-list prefix NO_ADJ_LOOP_172.18\
+      \ 172.18.0.3 255.255.255.0\n negotiation auto\n ipv6 address 2001:0:2::3/64\n\
+      \ ipv6 ospf 2 area 2\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n\
+      \ ip address 172.18.1.1 255.255.255.0\n negotiation auto\n ipv6 address 2001:0:2:1::1/64\n\
+      \ ipv6 ospf 2 area 2\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
+      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no mop enabled\n no mop sysid\n!\nrouter ospf 1\n network 6.6.6.6 0.0.0.0\
+      \ area 2\n network 172.18.0.0 0.0.0.255 area 2\n network 172.18.1.0 0.0.0.255\
+      \ area 2\n network 172.18.6.0 0.0.0.255 area 2\n distribute-list prefix NO_ADJ_LOOP_172.18\
       \ in\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
       !\n!\n!\n!\nip prefix-list NO_ADJ_LOOP_172.18 seq 10 deny 172.18.5.1/32\nip\
-      \ prefix-list NO_ADJ_LOOP_172.18 seq 20 permit 0.0.0.0/0 le 32\n!\n!\n!\n!\n\
-      !\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging\
-      \ synchronous\n stopbits 1\nline vty 0\n login\n transport input ssh\nline vty\
-      \ 1\n login\n length 0\n transport input ssh\nline vty 2 4\n login\n transport\
-      \ input ssh\n!\ncall-home\n ! If contact email address in call-home is configured\
-      \ as sch-smart-licensing@cisco.com\n ! the email address configured in Cisco\
-      \ Smart License Portal will be used as contact email address to send SCH notifications.\n\
-      \ contact-email-addr sch-smart-licensing@cisco.com\n profile \"CiscoTAC-1\"\n\
-      \  active\n  destination transport-method http\n!\n!\n!\n!\n!\nend"
+      \ prefix-list NO_ADJ_LOOP_172.18 seq 20 permit 0.0.0.0/0 le 32\nipv6 router\
+      \ ospf 2\n router-id 6.6.6.6\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n\
+      !\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline\
+      \ vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n transport\
+      \ input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If\
+      \ contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ ! the email address configured in Cisco Smart License Portal will be used\
+      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
+      !\n!\n!\n!\nend"
     cpu_limit: 100
     cpus: 1
     data_volume: 0
@@ -993,17 +1003,17 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6529 bytes\n\
-      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6690 bytes\n\
+      !\n! Last configuration change at 22:23:24 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R5\n!\nboot-start-marker\n\
       boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
-      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
-      !\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n\
-      \ enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-4137324755\n\
-      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-4137324755\n\
+      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\nipv6 unicast-routing\n\
+      !\n!\n!\n!\n!\n!\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name\
+      \ authenticated\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-4137324755\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-4137324755\n\
       \ revocation-check none\n rsakeypair TP-self-signed-4137324755\n!\n!\ncrypto\
       \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
       \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
@@ -1063,23 +1073,25 @@ nodes:
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
       interface Loopback0\n ip address 5.5.5.5 255.255.255.255\n!\ninterface Loopback1\n\
       \ ip address 172.18.5.1 255.255.255.0\n!\ninterface GigabitEthernet1\n ip address\
-      \ 172.18.0.2 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet2\n ip address 172.18.2.1 255.255.255.0\n negotiation\
-      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n no ip\
-      \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
-      interface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no\
-      \ mop enabled\n no mop sysid\n!\nrouter ospf 1\n network 5.5.5.5 0.0.0.0 area\
-      \ 2\n network 172.18.0.0 0.0.0.255 area 2\n network 172.18.2.0 0.0.0.255 area\
-      \ 2\n network 172.18.5.0 0.0.0.255 area 2\n distribute-list prefix NO_ADJ_LOOP_172.18\
+      \ 172.18.0.2 255.255.255.0\n negotiation auto\n ipv6 address 2001:0:2::2/64\n\
+      \ ipv6 ospf 2 area 2\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n\
+      \ ip address 172.18.2.1 255.255.255.0\n negotiation auto\n ipv6 address 2001:0:2:2::1/64\n\
+      \ ipv6 ospf 2 area 2\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
+      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
+      \ no mop enabled\n no mop sysid\n!\nrouter ospf 1\n network 5.5.5.5 0.0.0.0\
+      \ area 2\n network 172.18.0.0 0.0.0.255 area 2\n network 172.18.2.0 0.0.0.255\
+      \ area 2\n network 172.18.5.0 0.0.0.255 area 2\n distribute-list prefix NO_ADJ_LOOP_172.18\
       \ in\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
       !\n!\n!\n!\nip prefix-list NO_ADJ_LOOP_172.18 seq 10 deny 172.18.6.1/32\nip\
-      \ prefix-list NO_ADJ_LOOP_172.18 seq 20 permit 0.0.0.0/0 le 32\n!\n!\n!\n!\n\
-      !\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n stopbits\
-      \ 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n\
-      \ transport input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n\
-      \ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
-      \ ! the email address configured in Cisco Smart License Portal will be used\
-      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ prefix-list NO_ADJ_LOOP_172.18 seq 20 permit 0.0.0.0/0 le 32\nipv6 router\
+      \ ospf 2\n router-id 5.5.5.5\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n\
+      !\n!\nline con 0\n exec-timeout 0 0\n stopbits 1\nline vty 0\n login\n transport\
+      \ input ssh\nline vty 1\n login\n length 0\n transport input ssh\nline vty 2\
+      \ 4\n login\n transport input ssh\n!\ncall-home\n ! If contact email address\
+      \ in call-home is configured as sch-smart-licensing@cisco.com\n ! the email\
+      \ address configured in Cisco Smart License Portal will be used as contact email\
+      \ address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
       \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
       !\n!\n!\n!\nend"
     cpu_limit: 100
@@ -1132,17 +1144,17 @@ nodes:
         slot: 0
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6596 bytes\n\
-      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6841 bytes\n\
+      !\n! Last configuration change at 22:23:23 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R7\n!\nboot-start-marker\n\
       boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
-      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
-      !\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n\
-      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n\
-      \ enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-3045602315\n\
-      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-3045602315\n\
+      !\n!\n!\nno ip domain lookup\n!\n!\n!\nlogin on-success log\nipv6 unicast-routing\n\
+      !\n!\n!\n!\n!\n!\n!\nsubscriber templating\n!\n!\n!\n!\n!\n!\nmultilink bundle-name\
+      \ authenticated\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-3045602315\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-3045602315\n\
       \ revocation-check none\n rsakeypair TP-self-signed-3045602315\n!\n!\ncrypto\
       \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
       \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
@@ -1203,21 +1215,24 @@ nodes:
       interface Loopback0\n ip address 7.7.7.7 255.255.255.255\n!\ninterface Loopback1\n\
       \ ip address 10.0.1.1 255.255.255.0\n!\ninterface Loopback2\n ip address 10.0.2.1\
       \ 255.255.255.0\n!\ninterface Loopback3\n ip address 10.0.3.1 255.255.255.0\n\
-      !\ninterface Loopback4\n ip address 10.0.5.1 255.255.255.0\n!\ninterface GigabitEthernet1\n\
-      \ ip address 10.0.0.2 255.255.255.0\n negotiation auto\n no mop enabled\n no\
-      \ mop sysid\n!\ninterface GigabitEthernet2\n no ip address\n shutdown\n negotiation\
-      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n no ip\
-      \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
-      interface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no\
-      \ mop enabled\n no mop sysid\n!\n!\nrouter eigrp 65001\n network 7.7.7.7 0.0.0.0\n\
-      \ network 10.0.0.0 0.0.0.255\n network 10.0.1.0 0.0.0.255\n network 10.0.2.0\
-      \ 0.0.0.255\n network 10.0.3.0 0.0.0.255\n network 10.0.5.0 0.0.0.255\n!\nip\
-      \ forward-protocol nd\nno ip http server\nip http secure-server\n!\nip route\
-      \ 0.0.0.0 0.0.0.0 10.0.0.1\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n\
-      !\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline\
-      \ vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n transport\
-      \ input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If\
-      \ contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      !\ninterface Loopback4\n ip address 10.0.5.1 255.255.255.0\n!\ninterface Loopback5\n\
+      \ no ip address\n ipv6 address 2001:1::1/64\n ipv6 address autoconfig\n ipv6\
+      \ eigrp 65001\n!\ninterface GigabitEthernet1\n ip address 10.0.0.2 255.255.255.0\n\
+      \ negotiation auto\n ipv6 address 2001:BD13:C341:1::2/64\n ipv6 eigrp 65001\n\
+      \ no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n no ip address\n\
+      \ shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface\
+      \ GigabitEthernet3\n no ip address\n shutdown\n negotiation auto\n no mop enabled\n\
+      \ no mop sysid\n!\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n!\n!\nrouter eigrp 65001\n network 7.7.7.7\
+      \ 0.0.0.0\n network 10.0.0.0 0.0.0.255\n network 10.0.1.0 0.0.0.255\n network\
+      \ 10.0.2.0 0.0.0.255\n network 10.0.3.0 0.0.0.255\n network 10.0.5.0 0.0.0.255\n\
+      !\nip forward-protocol nd\nno ip http server\nip http secure-server\n!\nip route\
+      \ 0.0.0.0 0.0.0.0 10.0.0.1\n!\n!\nipv6 route ::/0 2001:BD13:C341:1::1\nipv6\
+      \ router eigrp 65001\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline\
+      \ con 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline vty 0\n\
+      \ login\n transport input ssh\nline vty 1\n login\n length 0\n transport input\
+      \ ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If contact\
+      \ email address in call-home is configured as sch-smart-licensing@cisco.com\n\
       \ ! the email address configured in Cisco Smart License Portal will be used\
       \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
       \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
