@@ -89,7 +89,7 @@ nodes:
 
       Current configuration : 2669 bytes
       !
-      ! Last configuration change at 18:03:19 UTC Tue Mar 14 2023
+      ! Last configuration change at 19:09:55 UTC Tue Mar 14 2023
       !
       version 15.2
       service timestamps debug datetime msec
@@ -231,8 +231,8 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6873 bytes\n\
-      !\n! Last configuration change at 18:06:16 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 7142 bytes\n\
+      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R1\n!\nboot-start-marker\n\
@@ -309,21 +309,25 @@ nodes:
       \ ip nat outside\n negotiation auto\n no mop enabled\n no mop sysid\n!\n!\n\
       router eigrp 65001\n network 1.1.1.1 0.0.0.0\n network 10.0.0.0 0.0.0.255\n\
       !\nrouter ospf 1\n priority 102\n auto-cost reference-bandwidth 1000\n area\
-      \ 1 range 172.17.0.0 255.255.252.0 cost 22\n summary-address 10.0.0.0 255.255.252.0\n\
-      \ redistribute eigrp 65001\n network 1.1.1.1 0.0.0.0 area 0\n network 172.16.0.0\
-      \ 0.0.0.255 area 0\n network 172.16.1.0 0.0.0.255 area 1\n network 172.17.0.0\
-      \ 0.0.0.255 area 1\n network 172.17.1.0 0.0.0.255 area 1\n default-information\
-      \ originate\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
-      !\nip nat inside source list NAT1 interface GigabitEthernet4 overload\n!\nip\
-      \ access-list standard NAT1\n 10 permit 172.16.0.0 0.0.255.255\n!\n!\n!\n!\n\
-      !\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging\
-      \ synchronous\n stopbits 1\nline vty 0\n login\n transport input ssh\nline vty\
-      \ 1\n login\n length 0\n transport input ssh\nline vty 2 4\n login\n transport\
-      \ input ssh\n!\ncall-home\n ! If contact email address in call-home is configured\
-      \ as sch-smart-licensing@cisco.com\n ! the email address configured in Cisco\
-      \ Smart License Portal will be used as contact email address to send SCH notifications.\n\
-      \ contact-email-addr sch-smart-licensing@cisco.com\n profile \"CiscoTAC-1\"\n\
-      \  active\n  destination transport-method http\n!\n!\n!\n!\n!\nend"
+      \ 0 filter-list prefix NO_LOOP_AREA1 in\n area 1 range 172.17.0.0 255.255.252.0\
+      \ cost 22\n summary-address 10.0.0.0 255.255.252.0\n summary-address 10.0.5.0\
+      \ 255.255.255.0 not-advertise\n redistribute eigrp 65001\n network 1.1.1.1 0.0.0.0\
+      \ area 0\n network 172.16.0.0 0.0.0.255 area 0\n network 172.16.1.0 0.0.0.255\
+      \ area 1\n network 172.17.0.0 0.0.0.255 area 1\n network 172.17.1.0 0.0.0.255\
+      \ area 1\n default-information originate\n!\nip forward-protocol nd\nno ip http\
+      \ server\nip http secure-server\n!\nip nat inside source list NAT1 interface\
+      \ GigabitEthernet4 overload\n!\nip access-list standard NAT1\n 10 permit 172.16.0.0\
+      \ 0.0.255.255\n!\n!\n!\nip prefix-list NO_LOOP_AREA1 seq 10 deny 172.17.5.1/32\n\
+      ip prefix-list NO_LOOP_AREA1 seq 20 deny 172.17.6.1/32\nip prefix-list NO_LOOP_AREA1\
+      \ seq 30 permit 0.0.0.0/0 le 32\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n\
+      !\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline\
+      \ vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n transport\
+      \ input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If\
+      \ contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ ! the email address configured in Cisco Smart License Portal will be used\
+      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
+      !\n!\n!\n!\nend"
     cpu_limit: 100
     cpus: 1
     data_volume: 0
@@ -356,8 +360,8 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6355 bytes\n\
-      !\n! Last configuration change at 18:05:57 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6586 bytes\n\
+      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R2\n!\nboot-start-marker\n\
@@ -425,24 +429,27 @@ nodes:
       \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
       interface Loopback0\n ip address 2.2.2.2 255.255.255.255\n!\ninterface Loopback1\n\
-      \ no ip address\n!\ninterface GigabitEthernet1\n ip address 172.17.0.2 255.255.255.0\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n\
-      \ ip address 172.17.1.1 255.255.255.0\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet3\n no ip address\n shutdown\n negotiation\
-      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n no ip\
+      \ ip address 172.17.5.1 255.255.255.0\n!\ninterface GigabitEthernet1\n ip address\
+      \ 172.17.0.2 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet2\n ip address 172.17.1.1 255.255.255.0\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n no ip\
       \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
-      router ospf 1\n auto-cost reference-bandwidth 1000\n network 2.2.2.2 0.0.0.0\
-      \ area 1\n network 172.17.0.0 0.0.0.255 area 1\n network 172.17.1.0 0.0.0.255\
-      \ area 1\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
-      !\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout\
-      \ 0 0\n logging synchronous\n stopbits 1\nline vty 0\n login\n transport input\
-      \ ssh\nline vty 1\n login\n length 0\n transport input ssh\nline vty 2 4\n login\n\
-      \ transport input ssh\n!\ncall-home\n ! If contact email address in call-home\
-      \ is configured as sch-smart-licensing@cisco.com\n ! the email address configured\
-      \ in Cisco Smart License Portal will be used as contact email address to send\
-      \ SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n profile\
-      \ \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n!\n!\n!\n\
-      !\nend"
+      interface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no\
+      \ mop enabled\n no mop sysid\n!\nrouter ospf 1\n auto-cost reference-bandwidth\
+      \ 1000\n network 2.2.2.2 0.0.0.0 area 1\n network 172.17.0.0 0.0.0.255 area\
+      \ 1\n network 172.17.1.0 0.0.0.255 area 1\n network 172.17.5.0 0.0.0.255 area\
+      \ 1\n distribute-list prefix NO_LOOP_ADJ_172.17 in\n!\nip forward-protocol nd\n\
+      no ip http server\nip http secure-server\n!\n!\n!\n!\nip prefix-list NO_LOOP_ADJ_172.17\
+      \ seq 10 deny 172.17.6.1/32\nip prefix-list NO_LOOP_ADJ_172.17 seq 20 permit\
+      \ 0.0.0.0/0 le 32\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con\
+      \ 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline vty 0\n login\n\
+      \ transport input ssh\nline vty 1\n login\n length 0\n transport input ssh\n\
+      line vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If contact email\
+      \ address in call-home is configured as sch-smart-licensing@cisco.com\n ! the\
+      \ email address configured in Cisco Smart License Portal will be used as contact\
+      \ email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
+      !\n!\n!\n!\nend"
     cpu_limit: 100
     cpus: 1
     data_volume: 0
@@ -475,8 +482,8 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6318 bytes\n\
-      !\n! Last configuration change at 18:06:02 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6528 bytes\n\
+      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R3\n!\nboot-start-marker\n\
@@ -543,7 +550,7 @@ nodes:
       \ CSR1000V sn 9RAF2MAI7AX\ndiagnostic bootup level minimal\nmemory free low-watermark\
       \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
-      interface Loopback0\n ip address 3.3.3.3 255.255.255.255\n!\ninterface GigabitEthernet1\n\
+      interface Loopback0\n ip address 172.17.6.1 255.255.255.0\n!\ninterface GigabitEthernet1\n\
       \ ip address 172.17.0.3 255.255.255.0\n negotiation auto\n no mop enabled\n\
       \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 172.17.2.1 255.255.255.0\n\
       \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
@@ -551,14 +558,17 @@ nodes:
       !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\nrouter ospf 1\n auto-cost reference-bandwidth\
       \ 1000\n network 3.3.3.3 0.0.0.0 area 1\n network 172.17.0.0 0.0.0.255 area\
-      \ 1\n network 172.17.2.0 0.0.0.255 area 1\n!\nip forward-protocol nd\nno ip\
-      \ http server\nip http secure-server\n!\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n\
-      !\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits\
-      \ 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n\
-      \ transport input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n\
-      \ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
-      \ ! the email address configured in Cisco Smart License Portal will be used\
-      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ 1\n network 172.17.2.0 0.0.0.255 area 1\n network 172.17.6.0 0.0.0.255 area\
+      \ 1\n distribute-list prefix NO_ADJ_LOOP_172.17 in\n!\nip forward-protocol nd\n\
+      no ip http server\nip http secure-server\n!\n!\n!\n!\nip prefix-list NO_ADJ_LOOP_172.17\
+      \ seq 10 deny 172.17.5.1/32\nip prefix-list NO_ADJ_LOOP_172.17 seq 20 permit\
+      \ 0.0.0.0/0 le 32\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con\
+      \ 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline vty 0\n login\n\
+      \ transport input ssh\nline vty 1\n login\n length 0\n transport input ssh\n\
+      line vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If contact email\
+      \ address in call-home is configured as sch-smart-licensing@cisco.com\n ! the\
+      \ email address configured in Cisco Smart License Portal will be used as contact\
+      \ email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
       \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
       !\n!\n!\n!\nend"
     cpu_limit: 100
@@ -593,8 +603,8 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6412 bytes\n\
-      !\n! Last configuration change at 18:06:13 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6631 bytes\n\
+      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R4\n!\nboot-start-marker\n\
@@ -668,14 +678,17 @@ nodes:
       !\ninterface GigabitEthernet3\n no ip address\n shutdown\n negotiation auto\n\
       \ no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n no ip address\n\
       \ shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\nrouter ospf\
-      \ 1\n priority 101\n area 2 range 172.18.0.0 255.255.252.0 cost 22\n network\
-      \ 4.4.4.4 0.0.0.0 area 0\n network 172.16.0.0 0.0.0.255 area 0\n network 172.16.4.0\
-      \ 0.0.0.255 area 2\n network 172.18.0.0 0.0.0.255 area 2\n!\nip forward-protocol\
-      \ nd\nno ip http server\nip http secure-server\n!\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n\
-      !\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits\
-      \ 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n\
-      \ transport input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n\
-      \ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ 1\n priority 101\n area 0 filter-list prefix NO_AREA_2_Loop in\n area 2 range\
+      \ 172.18.0.0 255.255.252.0 cost 22\n network 4.4.4.4 0.0.0.0 area 0\n network\
+      \ 172.16.0.0 0.0.0.255 area 0\n network 172.16.4.0 0.0.0.255 area 2\n network\
+      \ 172.18.0.0 0.0.0.255 area 2\n!\nip forward-protocol nd\nno ip http server\n\
+      ip http secure-server\n!\n!\n!\n!\nip prefix-list NO_AREA_2_Loop seq 10 deny\
+      \ 172.18.5.1/32\nip prefix-list NO_AREA_2_Loop seq 20 deny 172.18.6.1/32\nip\
+      \ prefix-list NO_AREA_2_Loop seq 30 permit 0.0.0.0/0 le 32\n!\n!\n!\n!\n!\n\
+      control-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n\
+      \ stopbits 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n\
+      \ length 0\n transport input ssh\nline vty 2 4\n login\n transport input ssh\n\
+      !\ncall-home\n ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
       \ ! the email address configured in Cisco Smart License Portal will be used\
       \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
       \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
@@ -717,7 +730,7 @@ nodes:
 
       Current configuration : 2669 bytes
       !
-      ! Last configuration change at 18:04:03 UTC Tue Mar 14 2023
+      ! Last configuration change at 19:10:24 UTC Tue Mar 14 2023
       !
       version 15.2
       service timestamps debug datetime msec
@@ -859,8 +872,8 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6282 bytes\n\
-      !\n! Last configuration change at 18:06:09 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6550 bytes\n\
+      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R6\n!\nboot-start-marker\n\
@@ -927,24 +940,27 @@ nodes:
       \ CSR1000V sn 9DZ48VFR11F\ndiagnostic bootup level minimal\nmemory free low-watermark\
       \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
-      interface Loopback0\n ip address 6.6.6.6 255.255.255.255\n!\ninterface GigabitEthernet1\n\
-      \ ip address 172.18.0.3 255.255.255.0\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 172.18.1.1 255.255.255.0\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
-      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
-      \ no mop enabled\n no mop sysid\n!\nrouter ospf 1\n network 6.6.6.6 0.0.0.0\
-      \ area 2\n network 172.18.0.0 0.0.0.255 area 2\n network 172.18.1.0 0.0.0.255\
-      \ area 2\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
-      !\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout\
-      \ 0 0\n logging synchronous\n stopbits 1\nline vty 0\n login\n transport input\
-      \ ssh\nline vty 1\n login\n length 0\n transport input ssh\nline vty 2 4\n login\n\
-      \ transport input ssh\n!\ncall-home\n ! If contact email address in call-home\
-      \ is configured as sch-smart-licensing@cisco.com\n ! the email address configured\
-      \ in Cisco Smart License Portal will be used as contact email address to send\
-      \ SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n profile\
-      \ \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n!\n!\n!\n\
-      !\nend"
+      interface Loopback0\n ip address 6.6.6.6 255.255.255.255\n!\ninterface Loopback1\n\
+      \ ip address 172.18.6.1 255.255.255.0\n!\ninterface GigabitEthernet1\n ip address\
+      \ 172.18.0.3 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet2\n ip address 172.18.1.1 255.255.255.0\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n no ip\
+      \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
+      interface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no\
+      \ mop enabled\n no mop sysid\n!\nrouter ospf 1\n network 6.6.6.6 0.0.0.0 area\
+      \ 2\n network 172.18.0.0 0.0.0.255 area 2\n network 172.18.1.0 0.0.0.255 area\
+      \ 2\n network 172.18.6.0 0.0.0.255 area 2\n distribute-list prefix NO_ADJ_LOOP_172.18\
+      \ in\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
+      !\n!\n!\n!\nip prefix-list NO_ADJ_LOOP_172.18 seq 10 deny 172.18.5.1/32\nip\
+      \ prefix-list NO_ADJ_LOOP_172.18 seq 20 permit 0.0.0.0/0 le 32\n!\n!\n!\n!\n\
+      !\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n logging\
+      \ synchronous\n stopbits 1\nline vty 0\n login\n transport input ssh\nline vty\
+      \ 1\n login\n length 0\n transport input ssh\nline vty 2 4\n login\n transport\
+      \ input ssh\n!\ncall-home\n ! If contact email address in call-home is configured\
+      \ as sch-smart-licensing@cisco.com\n ! the email address configured in Cisco\
+      \ Smart License Portal will be used as contact email address to send SCH notifications.\n\
+      \ contact-email-addr sch-smart-licensing@cisco.com\n profile \"CiscoTAC-1\"\n\
+      \  active\n  destination transport-method http\n!\n!\n!\n!\n!\nend"
     cpu_limit: 100
     cpus: 1
     data_volume: 0
@@ -977,8 +993,8 @@ nodes:
         slot: 3
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6261 bytes\n\
-      !\n! Last configuration change at 18:06:04 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6529 bytes\n\
+      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R5\n!\nboot-start-marker\n\
@@ -1045,19 +1061,23 @@ nodes:
       \ CSR1000V sn 924467ECDZ4\ndiagnostic bootup level minimal\nmemory free low-watermark\
       \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
       !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
-      interface Loopback0\n ip address 5.5.5.5 255.255.255.255\n!\ninterface GigabitEthernet1\n\
-      \ ip address 172.18.0.2 255.255.255.0\n negotiation auto\n no mop enabled\n\
-      \ no mop sysid\n!\ninterface GigabitEthernet2\n ip address 172.18.2.1 255.255.255.0\n\
-      \ negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n\
-      \ no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n\
-      !\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n\
-      \ no mop enabled\n no mop sysid\n!\nrouter ospf 1\n network 5.5.5.5 0.0.0.0\
-      \ area 2\n network 172.18.0.0 0.0.0.255 area 2\n network 172.18.2.0 0.0.0.255\
-      \ area 2\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
-      !\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout\
-      \ 0 0\n stopbits 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n\
-      \ length 0\n transport input ssh\nline vty 2 4\n login\n transport input ssh\n\
-      !\ncall-home\n ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      interface Loopback0\n ip address 5.5.5.5 255.255.255.255\n!\ninterface Loopback1\n\
+      \ ip address 172.18.5.1 255.255.255.0\n!\ninterface GigabitEthernet1\n ip address\
+      \ 172.18.0.2 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet2\n ip address 172.18.2.1 255.255.255.0\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n no ip\
+      \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
+      interface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no\
+      \ mop enabled\n no mop sysid\n!\nrouter ospf 1\n network 5.5.5.5 0.0.0.0 area\
+      \ 2\n network 172.18.0.0 0.0.0.255 area 2\n network 172.18.2.0 0.0.0.255 area\
+      \ 2\n network 172.18.5.0 0.0.0.255 area 2\n distribute-list prefix NO_ADJ_LOOP_172.18\
+      \ in\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
+      !\n!\n!\n!\nip prefix-list NO_ADJ_LOOP_172.18 seq 10 deny 172.18.6.1/32\nip\
+      \ prefix-list NO_ADJ_LOOP_172.18 seq 20 permit 0.0.0.0/0 le 32\n!\n!\n!\n!\n\
+      !\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n stopbits\
+      \ 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n\
+      \ transport input ssh\nline vty 2 4\n login\n transport input ssh\n!\ncall-home\n\
+      \ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
       \ ! the email address configured in Cisco Smart License Portal will be used\
       \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
       \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
@@ -1112,8 +1132,8 @@ nodes:
         slot: 0
         type: physical
   - boot_disk_size: 0
-    configuration: "Building configuration...\n\nCurrent configuration : 6511 bytes\n\
-      !\n! Last configuration change at 18:06:18 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 6596 bytes\n\
+      !\n! Last configuration change at 19:12:39 UTC Tue Mar 14 2023\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
       \ disable-kernel-core\nplatform console serial\n!\nhostname R7\n!\nboot-start-marker\n\
@@ -1183,15 +1203,16 @@ nodes:
       interface Loopback0\n ip address 7.7.7.7 255.255.255.255\n!\ninterface Loopback1\n\
       \ ip address 10.0.1.1 255.255.255.0\n!\ninterface Loopback2\n ip address 10.0.2.1\
       \ 255.255.255.0\n!\ninterface Loopback3\n ip address 10.0.3.1 255.255.255.0\n\
-      !\ninterface GigabitEthernet1\n ip address 10.0.0.2 255.255.255.0\n negotiation\
-      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n no ip\
+      !\ninterface Loopback4\n ip address 10.0.5.1 255.255.255.0\n!\ninterface GigabitEthernet1\n\
+      \ ip address 10.0.0.2 255.255.255.0\n negotiation auto\n no mop enabled\n no\
+      \ mop sysid\n!\ninterface GigabitEthernet2\n no ip address\n shutdown\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n no ip\
       \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
-      interface GigabitEthernet3\n no ip address\n shutdown\n negotiation auto\n no\
-      \ mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n no ip address\n\
-      \ shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n!\nrouter\
-      \ eigrp 65001\n network 7.7.7.7 0.0.0.0\n network 10.0.0.0 0.0.0.255\n network\
-      \ 10.0.1.0 0.0.0.255\n network 10.0.2.0 0.0.0.255\n network 10.0.3.0 0.0.0.255\n\
-      !\nip forward-protocol nd\nno ip http server\nip http secure-server\n!\nip route\
+      interface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no\
+      \ mop enabled\n no mop sysid\n!\n!\nrouter eigrp 65001\n network 7.7.7.7 0.0.0.0\n\
+      \ network 10.0.0.0 0.0.0.255\n network 10.0.1.0 0.0.0.255\n network 10.0.2.0\
+      \ 0.0.0.255\n network 10.0.3.0 0.0.0.255\n network 10.0.5.0 0.0.0.255\n!\nip\
+      \ forward-protocol nd\nno ip http server\nip http secure-server\n!\nip route\
       \ 0.0.0.0 0.0.0.0 10.0.0.1\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n\
       !\n!\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline\
       \ vty 0\n login\n transport input ssh\nline vty 1\n login\n length 0\n transport\
