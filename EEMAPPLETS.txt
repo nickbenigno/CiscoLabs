@@ -1,0 +1,46 @@
+event manager environment cli
+event manager environment NAME nickbenigno
+event manager applet ORDER
+ event none
+ action a puts "hello"
+ action b puts "My"
+ action c puts "is"
+ action d puts "Nick"
+event manager applet NAMEREAD
+ event none
+ action 1.0 puts "$NAME"
+event manager applet CiscoTAC-1
+ event none
+event manager applet LOOP
+ event none
+ action 1.0 set VAR "1"
+ action 2.0 while $VAR le 10
+ action 3.0  puts "VAR = $VAR"
+ action 4.0  increment VAR 1
+ action 5.0 end
+event manager applet ITERATION
+ event none
+event manager applet ITERATION2
+ event none
+ action 1.0 cli command "enable"
+ action 2.0 cli command "show ip route"
+ action 3.0 end
+event manager applet GETGOLR
+ event none sync yes
+ action 1.0 cli command "enable"
+ action 2.0 cli command "show ip route"
+ action 3.0 regexp "Gateway of last resort is [0-9]+.[0-9]+.[0-9]+.[0-9]+ to network [0-9]+.[0-9]+.[0-9]+.[0-9]+" "$_cli_result" OUTPUT
+ action 4.0 puts "$OUTPUT"
+event manager applet test1 authorization bypass
+ event none
+ action 1.0 cli command "enable"
+ action 2.0 cli command "sh ip int br"
+ action 3.0 puts "$_cli_result"
+ action 3.1 puts "$_error"
+ action 4.0 end
+event manager applet Test2
+ event none
+ action 100 puts "Whatever"
+ action 120 end
+!
+end
