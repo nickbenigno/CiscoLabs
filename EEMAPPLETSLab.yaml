@@ -1,0 +1,215 @@
+annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration: System Bridge
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: ext-conn-0
+    node_definition: external_connector
+    ram: null
+    tags: []
+    x: -400
+    y: -200
+    interfaces:
+      - id: i0
+        label: port
+        slot: 0
+        type: physical
+  - boot_disk_size: null
+    configuration: "Building configuration...\n\nCurrent configuration : 7778 bytes\n\
+      !\n! Last configuration change at 20:30:33 UTC Sat Sep 2 2023\n!\nversion 17.3\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname R1\n!\nboot-start-marker\n\
+      boot-end-marker\n!\n!\nlogging buffered 2000000\nno logging console\nlogging\
+      \ monitor informational\n!\nno aaa new-model\n!\n!\n!\n!\n!\n!\n!\nip domain\
+      \ name R1\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n!\nsubscriber templating\n\
+      !\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\n!\n!\n!\n!\n!\n!\n!\n\
+      !\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n\
+      \ revocation-check crl\n!\ncrypto pki trustpoint TP-self-signed-1062124601\n\
+      \ enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1062124601\n\
+      \ revocation-check none\n rsakeypair TP-self-signed-1062124601\n!\n!\ncrypto\
+      \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
+      \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
+      \ 040A1305 43697363 6F312030 1E060355 04031317 43697363\n  6F204C69 63656E73\
+      \ 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n  3834375A 170D3338\
+      \ 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n  43697363 6F312030\
+      \ 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n  526F6F74 20434130\
+      \ 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n  82010A02 82010100\
+      \ A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n  CBB4C798 212AA147\
+      \ C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n  1C394D78 462EF239\
+      \ C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9\
+      \ 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n  7390A3EB 2B5436AD\
+      \ C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n  68E69491 20F320E7\
+      \ 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n  C7479096 B4CB2D62\
+      \ EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD\
+      \ 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1\
+      \ 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n  06300F06 03551D13\
+      \ 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n  4B3D31E5 1B3E6A17\
+      \ 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n  03820101 00507F24\
+      \ D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n  604EDCDE FF4FED2B\
+      \ 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E\
+      \ 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n  467A3DF4 4D565700\
+      \ 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6\
+      \ 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n  5FB0DA06 B92AFE7F\
+      \ 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n  80DDCD16 D6BACECA\
+      \ EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n  418616A9 4093E049\
+      \ 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n  D697DF7F 28\n  \t\
+      quit\ncrypto pki certificate chain TP-self-signed-1062124601\n certificate self-signed\
+      \ 01\n  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n\
+      \  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n\
+      \  69666963 6174652D 31303632 31323436 3031301E 170D3233 30383331 31383531\n\
+      \  30375A17 0D333330 38333031 38353130 375A3031 312F302D 06035504 03132649\n\
+      \  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 30363231\n\
+      \  32343630 31308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n\
+      \  0A028201 0100A80C AABA8B7F 75C7C676 BD3F98A4 4DCE4691 AFF7D7BB 2CC11D5E\n\
+      \  2914E34A 37732B05 7F83F596 7AA3F08B 4A68728C 04492BFE 180270F9 924D50F0\n\
+      \  7DB97DF4 15FA2FC3 7242FE0A D97CF0A0 77A24B1B D7A789B3 12F0926F EA024D73\n\
+      \  95D0238E 4E21AC10 52702291 F5EB1D18 D6695422 F89F49B7 323E9329 0E64337F\n\
+      \  62A2BC11 C73B927E 44EAB4DD 022E108B D03AA735 841BD50A 5C62D76D 5BBB9BAC\n\
+      \  A0F4F891 445BF9A9 56277067 9D3A9CBA 7A336941 5EBCD7F4 F95D4019 7AF57DC6\n\
+      \  FB14ECE2 337A9611 526478F4 D32A1F1F C88BB007 59FCA9D2 F7931E08 6A4FA5ED\n\
+      \  7C371810 68B76D63 E95E3EA1 68D0D877 CF2F97A2 F84C21A9 73316F0F 716C25F0\n\
+      \  CB840DCF BD730203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n\
+      \  301F0603 551D2304 18301680 14721D54 BEA6A9B6 5CE1EC4A 6AF5AFB4 C6D7C8A1\n\
+      \  58301D06 03551D0E 04160414 721D54BE A6A9B65C E1EC4A6A F5AFB4C6 D7C8A158\n\
+      \  300D0609 2A864886 F70D0101 05050003 82010100 1AA90E0F D53B065F C8AA20E3\n\
+      \  7975C187 7EB2B9C0 45BD440E D0B9E53D 01422A41 F2C46609 D4A744CB 3A82A4D0\n\
+      \  66292A9A B4977721 D2B0D022 C41AAAA5 3271B6E1 884F38AD 1E5066F7 83D51F46\n\
+      \  F4D026C2 8D8DE0B7 37EFB0DC DFFF5C7C ECC938B3 61178796 6C599870 10A43553\n\
+      \  A8B49E1D 8BBB381C F3F49099 35C433CC DC0777DE DB09BDA8 CE059C08 03DDCC42\n\
+      \  0BBA9002 412A770B 57FE9BAB F58B1B38 F86A1123 1513647C FA653A35 221A2EBC\n\
+      \  714BC4C4 0117F3EF F1744D38 36188DBD 68FB5A20 21BAC7ED 1EC7F948 9FEE8BA3\n\
+      \  063ABD14 04F6DB76 80DB6DA5 46F9B3EB 2EF4AB48 CF692C2C 66CE52DD DB38A18A\n\
+      \  F10DF3A8 930DB27D C354E68B D93982DD 7BAB0EFF\n  \tquit\n!\nlicense udi pid\
+      \ CSR1000V sn 99OYC86YFWR\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\nusername user1 secret\
+      \ 8 $8$Iga9QqMIuy3fG.$pM5EntOuW41Vp0n7OlWdoCMtRo8Yut8xLFd/JNqxxs6\n!\nredundancy\n\
+      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
+      interface GigabitEthernet1\n ip address dhcp\n negotiation auto\n no mop enabled\n\
+      \ no mop sysid\n!\ninterface GigabitEthernet2\n no ip address\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n no ip\
+      \ address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\n\
+      interface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no\
+      \ mop enabled\n no mop sysid\n!\nip forward-protocol nd\nno ip http server\n\
+      ip http secure-server\n!\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n\
+      !\nline con 0\n exec-timeout 0 0\n logging synchronous\n stopbits 1\nline vty\
+      \ 0 4\n session-timeout 35791\n exec-timeout 0 0\n logging synchronous\n login\
+      \ local\n transport input all\n!\ncall-home\n ! If contact email address in\
+      \ call-home is configured as sch-smart-licensing@cisco.com\n ! the email address\
+      \ configured in Cisco Smart License Portal will be used as contact email address\
+      \ to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
+      !\n!\n!\nevent manager environment cli\nevent manager environment NAME nickbenigno\n\
+      event manager applet ORDER\n event none\n action a puts \"hello\"\n action b\
+      \ puts \"My\"\n action c puts \"is\"\n action d puts \"Nick\"\nevent manager\
+      \ applet NAMEREAD\n event none\n action 1.0 puts \"$NAME\"\nevent manager applet\
+      \ CiscoTAC-1\n event none\nevent manager applet LOOP\n event none\n action 1.0\
+      \ set VAR \"1\"\n action 2.0 while $VAR le 10\n action 3.0  puts \"VAR = $VAR\"\
+      \n action 4.0  increment VAR 1\n action 5.0 end\nevent manager applet ITERATION\n\
+      \ event none\nevent manager applet ITERATION2\n event none\n action 1.0 cli\
+      \ command \"enable\"\n action 2.0 cli command \"show ip route\"\n action 3.0\
+      \ end\nevent manager applet GETGOLR\n event none sync yes\n action 1.0 cli command\
+      \ \"enable\"\n action 2.0 cli command \"show ip route\"\n action 3.0 regexp\
+      \ \"Gateway of last resort is [0-9]+.[0-9]+.[0-9]+.[0-9]+ to network [0-9]+.[0-9]+.[0-9]+.[0-9]+\"\
+      \ \"$_cli_result\" OUTPUT\n action 4.0 puts \"$OUTPUT\"\nevent manager applet\
+      \ test1 authorization bypass\n event none\n action 1.0 cli command \"enable\"\
+      \n action 2.0 cli command \"sh ip int br\"\n action 3.0 puts \"$_cli_result\"\
+      \n action 3.1 puts \"$_error\"\n action 4.0 end\nevent manager applet Test2\n\
+      \ event none\n action 100 puts \"Whatever\"\n action 120 end\nevent manager\
+      \ applet SHOWIPROUTEYN\n event cli pattern \"^sh.* ip ro.*\" sync yes\n action\
+      \ 100 puts \"Are you sure you want to run (y/n):\"\n action 110 gets INPUT\n\
+      \ action 120 if $INPUT eq \"y\"\n action 121  syslog priority informational\
+      \ msg \"$_cli_msg entered by $_cli_username\"\n action 130  set _exit_status\
+      \ \"1\"\n action 140 else\n action 150  set _exit_status \"0\"\n action 160\
+      \ end\n!\nend"
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: csr1000v-0
+    node_definition: csr1000v
+    ram: null
+    tags: []
+    x: -40
+    y: -120
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet2
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet3
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet4
+        slot: 3
+        type: physical
+  - boot_disk_size: null
+    configuration: hostname inserthostname-here
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: iosvl2-0
+    node_definition: iosvl2
+    ram: null
+    tags: []
+    x: -240
+    y: -240
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+links:
+  - id: l0
+    n1: n0
+    n2: n2
+    i1: i0
+    i2: i1
+    conditioning: {}
+    label: ext-conn-0-port<->iosvl2-0-GigabitEthernet0/0
+  - id: l1
+    n1: n1
+    n2: n2
+    i1: i1
+    i2: i2
+    conditioning: {}
+    label: csr1000v-0-GigabitEthernet1<->iosvl2-0-GigabitEthernet0/1
+lab:
+  description: ''
+  notes: ''
+  title: Lab at Mon 15:06 PM
+  version: 0.2.1
